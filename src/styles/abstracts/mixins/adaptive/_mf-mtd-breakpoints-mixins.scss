@@ -1,0 +1,53 @@
+@use '@abstracts/variables/variables' as shared;
+@use '@abstracts/functions/is-list-function' as *;
+
+// mobile-tablet-desktop (mtd) -  mobile first methodology breakpoints
+// example: @include mtd(font-size, 50%, 70%, 100%);
+// got 3 breakpoints: mobile, tablet, desktop
+@mixin mtd-bp ($property, $min: null, $medium: null, $max: null) {
+
+    // Apply basic styles (mobile)
+    @if $min != null {
+      #{$property}: process-values($min);
+    }
+  
+    // Applying styles for the tablet
+    @if $medium != null {
+      @media screen and (min-width: shared.$screen-md) {
+        #{$property}: process-values($medium);
+      }
+    }
+  
+    // Apply desktop styles
+    @if $max != null {
+      @media screen and (min-width: shared.$screen-xl) {
+        #{$property}: process-values($max);
+      }
+    }
+  }
+  
+  // the same but with converting values to rem
+  
+  @mixin mtd-bp-rem($property, $min: null, $medium: null, $max: null) {
+   
+    // Apply basic styles (mobile)
+    @if $min != null {
+      #{$property}: process-values-rem($min);
+    }
+  
+    // Applying styles for the tablet
+    @if $medium != null {
+      @media screen and (min-width: shared.$screen-md) {
+        #{$property}: process-values-rem($medium);
+      }
+    }
+  
+    // Apply desktop styles
+    @if $max != null {
+      @media screen and (min-width: shared.$screen-xl) {
+        #{$property}: process-values-rem($max);
+      }
+    }
+  }
+  
+  

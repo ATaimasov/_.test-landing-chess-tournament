@@ -1,0 +1,81 @@
+@use '@styles/global' as *;
+@use "sass:color";
+
+.html {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-style : normal;
+    line-height: 20px;
+    @include mf-bp-rem('font-size', (
+        xs: $font-size-html * 0.8,
+        sm: $font-size-html * 0.9,
+        xl: $font-size-html,
+    ));
+}
+
+// grid 3 rows start
+.body {
+    &--grid {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 100%;
+        justify-items: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+}
+.footer,
+.header,
+.main {
+    &--grid {
+        min-width: 100%;
+    }
+
+    @include mf-bp-rem('padding', (
+        xs: 0 20px,
+        md: 0 avg(20px, 72px),
+        xl: 0 72px,
+    ));
+}
+// grid 3 rows end
+
+.img {
+    max-width: 100%;
+}
+
+.logo {
+    line-height: 0;
+}
+
+::selection {
+    background: color.adjust($color-background , $lightness: -20%);
+    text-shadow: none;
+    color: white;
+}
+
+.link {
+    text-decoration: none;
+    transition: opacity $animation-duration $animation, color $animation-duration $animation;
+    cursor: pointer;
+
+    &.link--active {
+        color      : $color-btn-main-hover;
+    }
+
+    &:is(:focus-visible, :hover) {
+        opacity: 0.8;
+        outline: none;
+    }
+}
+
+.icon {
+    fill      : currentColor;
+    transition: fill $animation-duration $animation;
+
+    &:hover {
+        fill: currentColor;
+    }
+
+    &--active {
+        fill: $color-btn-main-hover ;
+    }
+}

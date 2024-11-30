@@ -1,0 +1,15 @@
+@use '@styles/global' as *;
+
+.main {
+    overflow-y: auto; /* Add scrolling if content doesn't fit */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include mf-bp-rem('margin', (
+        xs: 15px,
+    ));
+    @include mf-bp-rem('gap', (
+        xs: 10px,
+    ));
+}

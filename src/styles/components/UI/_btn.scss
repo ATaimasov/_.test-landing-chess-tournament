@@ -1,0 +1,45 @@
+@use '@styles/global' as *;
+
+.btn {
+    border-radius: 66px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 
+        background-color $animation-duration $animation, 
+        color $animation-duration $animation;
+
+    &-main {
+        background-color: $color-btn-main-default;
+        color: $color-btn-main-default-text;
+
+        &:hover {
+            background-color: $color-btn-main-hover;
+            color: $color-btn-main-hover-text;
+        }
+    }
+
+    &-secondary {
+        background-color: $color-btn-secondary-default;
+        color: $color-btn-secondary-default-text;
+
+        &:hover {
+            background-color: $color-btn-secondary-hover;
+            color: $color-btn-secondary-hover-text;
+        }
+    }
+
+    &-arrow {
+        border-radius: 50%;
+
+        background-color: $color-btn-arrow-default;
+        color: $color-btn-arrow-text;
+
+        &:hover {
+            background-color: $color-btn-arrow-hover;
+        }
+
+        &:disabled {
+            background-color: $color-btn-arrow-disabled;
+        }
+    }
+}

@@ -1,0 +1,108 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+
+@use '@abstracts/variables/variables' as shared;
+@use '@abstracts/functions/is-list-function' as *;
+
+$breakpoints: (
+  xs : shared.$screen-xs,
+  sm : shared.$screen-sm,
+  md : shared.$screen-md,
+  lg : shared.$screen-lg,
+  xl : shared.$screen-xl,
+  xxl: shared.$screen-xxl
+);
+
+@mixin mf-bp($property, $values...) {
+  // Check if map of values is passed
+  @if list.length($values) == 1 and meta.type-of(list.nth($values, 1)) == "map" {
+    $values-map: list.nth($values, 1);
+    
+    // Go through all breakpoints in the value map
+    @each $breakpoint, $value in $values-map {
+      @if not map.has-key($breakpoints, $breakpoint) {
+        @warn "Unknown breakpoint `#{$breakpoint}`. Expected one of `#{map.keys($breakpoints)}`";
+        @continue;
+      }
+
+      @if $breakpoint == "xs" {
+        & {
+          #{$property}: $value;
+        }
+      } @else {
+        @media screen and (min-width: map.get($breakpoints, $breakpoint)) {
+          #{$property}: $value;
+        }
+      }
+    }
+  } 
+  
+}
+
+@mixin mf-bp-rem($property, $values...) {
+  // Check if map of values is passed
+  @if list.length($values) == 1 and meta.type-of(list.nth($values, 1)) == "map" {
+    $values-map: list.nth($values, 1);
+    
+    // Go through all breakpoints in the value map
+    @each $breakpoint, $value in $values-map {
+      @if not map.has-key($breakpoints, $breakpoint) {
+        @warn "Unknown breakpoint `#{$breakpoint}`. Expected one of `#{map.keys($breakpoints)}`";
+        @continue;
+      }
+
+      @if $breakpoint == "xs" {
+        & {
+          #{$property}: process-values-rem($value);
+        }
+      } @else {
+        @media screen and (min-width: map.get($breakpoints, $breakpoint)) {
+          #{$property}: process-values-rem($value);
+        }
+      }
+    }
+  } 
+  
+  // @else {
+  //   // Backward compatibility with the old syntax
+  //   $min: if(list.length($values) >= 1, list.nth($values, 1), null);
+  //   $medium: if(list.length($values) >= 2, list.nth($values, 2), null);
+  //   $max: if(list.length($values) >= 3, list.nth($values, 3), null);
+
+  //   @if $min != null {
+  //     #{$property}: process-values-rem($min);
+  //   }
+
+  //   @if $medium != null {
+  //     @media screen and (min-width: shared.$screen-md) {
+  //       #{$property}: process-values-rem($medium);
+  //     }
+  //   }
+
+  //   @if $max != null {
+  //     @media screen and (min-width: shared.$screen-xl) {
+  //       #{$property}: process-values-rem($max);
+  //     }
+  //   }
+  // }
+}
+
+//  concise syntax
+// example: @include mf-bp('margin', brief-bp(10% 10px, 12px, 25px));
+
+// brief-breakpoints
+@function brief-bp($values...) {
+  $result: ();
+  $breakpoints-list: map.keys($breakpoints);
+  
+  @for $i from 1 through list.length($values) {
+    @if $i <= list.length($breakpoints-list) {
+      $breakpoint: list.nth($breakpoints-list, $i);
+      $value: list.nth($values, $i);
+      $result: map.set($result, $breakpoint, $value);
+    }
+  }
+  
+  @return $result;
+}

@@ -1,0 +1,56 @@
+@use "sass:math";
+@use "sass:list";
+@use "sass:meta";
+
+// convert only pixels but you can add different values together
+// example:  padding: px-to-rem(12px, 1%, 1rem, 12px); =>     padding: 0.75rem 1% 1rem 0.75rem;
+@function px-to-rem($values...) {
+    // If no values provided, return null
+    @if list.length($values) == 0 {
+        @error "px-to-rem() requires at least one parameter";
+        @return null;
+    }
+
+    $base-font-size: 16px !default;
+    $result: ();
+
+    // Handle multiple values (e.g. margins, paddings)
+    @each $value in $values {
+        $converted-value: null;
+
+        // Handle null values
+        @if $value == null {
+            $converted-value: null;
+        }
+        // Handle numbers without units
+        @else if meta.type-of($value) == "number" and math.unit($value) == "" {
+            $converted-value: $value;
+        }
+        // Handle pixel values
+        @else if meta.type-of($value) == "number" and math.unit($value) == "px" {
+            $converted-value: math.div($value, $base-font-size) * 1rem;
+        }
+        // Handle non-pixel units
+        @else if meta.type-of($value) == "number" and math.unit($value) != "px" {
+            // @warn "Value #{$value} has incorrect unit. Expected px, got #{math.unit($value)}"; 
+            // uncomment to get warnings if you need check units
+            $converted-value: $value;
+        }
+        // Handle non-numeric values
+        @else {
+            // @warn "Value #{$value} is not a number";
+            // uncomment to get warnings if you need check units for non-numeric values
+            $converted-value: $value;
+        }
+
+        $result: list.append($result, $converted-value);
+    }
+
+    // Return single value without list
+    @if list.length($result) == 1 {
+        @return list.nth($result, 1);
+    }
+
+    @return $result;
+}
+

@@ -1,0 +1,46 @@
+@use "sass:meta";
+@use "sass:list";
+@use './rem-functions' as *;
+ 
+ // Function to check if the value is a list
+ @function is-list-like($value) {
+    @return meta.type-of($value) == "list" or 
+           meta.type-of($value) == "arglist" or 
+           (meta.type-of($value) == "string" and list.index($value, " ") != null);
+  }
+  
+
+
+   // Function for value processing depending on is-list-like
+   @function process-values($values) {
+    // If the value is not a list, process as a single value
+    @if not is-list-like($values) {
+      @return $values;
+    }
+    
+    // If it is a list, process each value separately
+    $result: ();
+    @each $value in $values {
+      $result: list.append($result, $value);
+    }
+    @return $result;
+}
+
+
+//  the same but with converting values to rem
+@function process-values-rem($values) {
+    // If the value is not a list, process as a single value
+    @if not is-list-like($values) {
+      @return px-to-rem($values);
+    }
+    
+    // If it is a list, process each value separately
+    $result: ();
+    @each $value in $values {
+      $result: list.append($result, px-to-rem($value));
+    }
+    @return $result;
+}
+
+
+

@@ -1,0 +1,43 @@
+@use '@styles/global' as *;
+@use '@scss-components/company-logo';
+@use '@scss-components/hero';
+
+.header {
+
+    @include mf-bp-rem('padding', (
+        xs: 18px,
+        md: avg(18px, 26px),
+        xl: 26px
+    ));
+
+    &-company__icon {
+        @include mf-bp-rem('width', (
+            xs: 213px,
+            md: avg(213px, 245.17px),
+            xl: 245.17px
+        ));
+        @include mf-bp-rem('height', (
+            xs: 32px,
+            md: avg(32px, 36px),
+            xl: 36px
+        ));
+      
+    }
+
+    &__hero {
+        @include mf-bp-rem('padding', (
+            xs: 40px,
+            md: avg(40px, 62px),
+            xl: 62px
+        ));
+
+        &-title {
+            @include mf-bp-rem('font-size', (
+                xs: 36px,
+                md: avg(36px, 60px),
+                xl: 60px
+            ));
+        }
+       
+    }
+}

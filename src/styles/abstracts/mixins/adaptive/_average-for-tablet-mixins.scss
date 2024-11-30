@@ -1,0 +1,35 @@
+@use '@abstracts/variables/variables' as shared;
+@use '@abstracts/functions/strip-unit-function' as *;
+
+  // average-value-for-tablet
+  // calculate adaptive property if we don't have value for tablet, but have values for desktop and mobile
+  // example: @include average-for-tablet('width', 117.43px, 175.39px);
+  @mixin avg-tab($property, $mobile-value, $desktop-value, $tablet-value: null) {
+    & {
+      #{$property}: $mobile-value;
+    }
+  
+      // Calculation of the value for tablets, if not specified
+    @if $tablet-value == null {
+      $tablet-value: $mobile-value + ($desktop-value - $mobile-value) * 0.5;
+    }
+  
+      // Adaptive value for tablets and above
+    @media screen and (min-width: shared.$screen-md) {
+      $mobile-value-num : strip-unit($mobile-value);
+      $tablet-value-num : strip-unit($tablet-value);
+      $desktop-value-num: strip-unit($desktop-value);
+      $screen-md-num    : strip-unit(shared.$screen-md);
+      $screen-xl-num    : strip-unit(shared.$screen-xl);
+
+      #{$property}: calc(#{$tablet-value} + (#{$desktop-value-num} - #{$tablet-value-num}) * (min(100vw, #{shared.$screen-xl}) - #{shared.$screen-md}) / (#{$screen-xl-num} - #{$screen-md-num}));
+    }
+    
+      // Fixed value for desktop
+    @media screen and (min-width: shared.$screen-xl) {
+      #{$property}: $desktop-value;
+    }
+ 
+  }
+
+
