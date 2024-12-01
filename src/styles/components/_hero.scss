@@ -7,7 +7,7 @@
     max-width: 1413.5px;
 
     & > * {
-        @include avg-tab('max-width', 335px, 542px);
+        @include avg-bp('max-width', 335px, 542px);
     }
 
     @include mf-bp-rem('row-gap', (

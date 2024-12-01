@@ -2,17 +2,10 @@
 @use "sass:list";
 @use "sass:meta";
 
-@use '@abstracts/variables/variables' as shared;
+@use 'shared-breakpoints' as *;
 @use '@abstracts/functions/is-list-function' as *;
 
-$breakpoints: (
-  xs : shared.$screen-xs,
-  sm : shared.$screen-sm,
-  md : shared.$screen-md,
-  lg : shared.$screen-lg,
-  xl : shared.$screen-xl,
-  xxl: shared.$screen-xxl
-);
+
 
 @mixin mf-bp($property, $values...) {
   // Check if map of values is passed

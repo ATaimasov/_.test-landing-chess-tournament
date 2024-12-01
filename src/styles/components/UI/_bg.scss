@@ -3,7 +3,6 @@
 .bg {
     background-color: $color-background ;
     user-select: none;
-    
     background-position: center;
     width: 100%;
     height: 100%;
@@ -15,29 +14,14 @@
 
     &-container {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        background-color: $color-background;
+        width: 100%; 
+        height: 100%; 
         overflow: hidden;
-        z-index: -50;
+        z-index: -1;
         max-width: 1623.5px;
         margin: 0 auto;
     }
-
-    // // Новый псевдоэлемент для центрирования содержимого
-    // &::before {
-    //     content: '';
-    //     display: block;
-    //     width: 100%;
-    //     height: 100%;
-    //     max-width: 1623.5px;
-    //     margin: 0 auto;
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     right: 0;
-    // }
 
     &::after {
 
@@ -61,44 +45,60 @@
         &-horse {
             transform: rotate(-10.59deg);
             z-index: 6;
-            @include avg-tab(bottom, 17.59px, 9.3px);
-            @include avg-tab(right, 131.21px, 334.28px);
-            @include avg-tab(width, 76.71px, 153.87px);
-            @include avg-tab(height, 121.63px, 243.99px);
+            @include avg-bp(bottom, 17.59px, 9.3px);
+            @include avg-bp(right, 131.21px, 334.28px);
+            @include avg-bp(width, 76.71px, 153.87px);
+            @include avg-bp(height, 121.63px, 243.99px);
         }
 
         &-bishop {
             z-index: 3;
-            transform: rotate(avg(15deg, 7.59deg));
-            @include avg-tab(width, 46.98px, 113.16px);
-            @include avg-tab(height, 104.8px, 252.44px);
-            @include avg-tab(bottom, 200.61px, 329.54px);
-            @include avg-tab(right, 79.69px, 159.04px);
+            transform: rotate(avg(15deg, -7.59deg));
+            @include avg-bp(width, 46.98px, 113.16px);
+            @include avg-bp(height, 104.8px, 252.44px);
+            @include avg-bp(bottom, 200.61px, 329.54px);
+            @include avg-bp(right, 79.69px, 159.04px);
+            @include avg-bp(right, 159.04px, 277.04px, 'xl', 'xxl');
         }
 
         &-king {
             z-index: 3;
             transform: rotate(-5.99deg);
-            @include avg-tab(width, 47.44px, 103.78px);
-            @include avg-tab(height, 116.98px, 255.89px);
-            @include avg-tab(bottom, 149.25px, 224.31px);
-            @include avg-tab(right, 252.8px, 506.92px);
+            @include avg-bp(width, 47.44px, 103.78px);
+            @include avg-bp(height, 116.98px, 255.89px);
+            @include avg-bp(bottom, 149.25px, 224.31px);
+            @include avg-bp(right, 252.8px, 506.92px);
+            @include avg-bp(right, 506.92px, 624.92px, 'xl', 'xxl');
+        }
+
+        &-pawn {
+            z-index: 6;
+            width: 82.61px;
+            height: 122.22px;
+            bottom: 79.58px;
+            @include mf-bp('display', (
+                xs: none,
+                xl: block,
+            )); 
+            @include avg-bp(right, 44.55px, 162.55px, 'xl', 'xxl');
         }
 
         &-city {
             z-index: 4;
-            @include avg-tab(height, 246.81px, 452.5px);
-            @include avg-tab(width, 885.53px, 1623.5px);
-            @include avg-tab(bottom, 27.33px, 22.5px);
-            @include avg-tab(right, -109.43px, -141px);
+            @include avg-bp(height, 246.81px, 452.5px);
+            @include avg-bp(width, 885.53px, 1623.5px);
+            @include avg-bp(bottom, 27.33px, 22.5px);
+            @include avg-bp(right, -109.43px, -141px);
+            @include avg-bp(right, -141px, 0px, 'xl', 'xxl');
         }
         
         &-sun {
             z-index: 2;
-            @include avg-tab(width, 297.47px, 660px);
-            @include avg-tab(height, 297.47px, 660px);
-            @include avg-tab(bottom, 104.69px, 128px);
-            @include avg-tab(right, 47.49px, 33px);
+            @include avg-bp(width, 297.47px, 660px);
+            @include avg-bp(height, 297.47px, 660px);
+            @include avg-bp(bottom, 104.69px, 144px);
+            @include avg-bp(right, 47.49px, 33px);
+            @include avg-bp(right, 33px, 151px, 'xl', 'xxl');
         }
 
         // @at-root .bg-container & {

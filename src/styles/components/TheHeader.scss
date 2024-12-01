@@ -10,11 +10,11 @@
     flex-direction: column;
     align-items: center;
 
-    &-container {
+    &-content {
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 1600px;
+        max-width: 1366px;
     }
     
 
@@ -32,6 +32,7 @@
             md: avg(213px, 245.17px),
             xl: 245.17px
         ));
+
         @include mf-bp-rem('height', (
             xs: 32px,
             md: avg(32px, 36px),
@@ -39,14 +40,6 @@
         ));
       
     }
-
-    // &__content {
-    //     display: grid;
-    //     @media screen and (min-width: $screen-md) {
-    //         grid-template-columns: 50% 50%;
-    //     }
-    // }
-
 
     &__hero {
         @include mf-bp-rem('margin', (

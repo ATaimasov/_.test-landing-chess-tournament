@@ -1,0 +1,10 @@
+@use '@abstracts/variables/variables' as shared;
+
+$breakpoints: (
+  xs : shared.$screen-xs,
+  sm : shared.$screen-sm,
+  md : shared.$screen-md,
+  lg : shared.$screen-lg,
+  xl : shared.$screen-xl,
+  xxl: shared.$screen-xxl
+);
