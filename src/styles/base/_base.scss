@@ -6,7 +6,10 @@
     font-style : normal;
     line-height: 20px;
     @include mf-bp-rem('font-size', (
-        xs: $font-size-html,
+        xs: $font-size-html * 0.7,
+        sm: $font-size-html,
+        md: $font-size-html * 0.95,
+        lg: $font-size-html
     ));
 }
 

@@ -2,16 +2,42 @@
 
 .bg {
     background-color: $color-background ;
+    user-select: none;
     
     background-position: center;
     width: 100%;
     height: 100%;
-    max-width: 1623.5px;
     position: absolute;
     top: 0;
     left: 0;
     overflow: hidden;
     z-index: -50;
+
+    &-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -50;
+        max-width: 1623.5px;
+        margin: 0 auto;
+    }
+
+    // // Новый псевдоэлемент для центрирования содержимого
+    // &::before {
+    //     content: '';
+    //     display: block;
+    //     width: 100%;
+    //     height: 100%;
+    //     max-width: 1623.5px;
+    //     margin: 0 auto;
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     right: 0;
+    // }
 
     &::after {
 
@@ -74,5 +100,13 @@
             @include avg-tab(bottom, 104.69px, 128px);
             @include avg-tab(right, 47.49px, 33px);
         }
+
+        // @at-root .bg-container & {
+        //     max-width: 1623.5px;
+        //     margin: 0 auto;
+        //     left: 0;
+        //     right: 0;
+        // }
+        
     }
 }
