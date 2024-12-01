@@ -14,15 +14,64 @@
 
     &::after {
 
-    background-image: url('@images/bg/bg-header.png');
+    background-image: url('@images/bg-header.png');
     background-size: cover;
-    opacity: 0.25;
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -5;
+    z-index: 5;
+    mix-blend-mode: color-burn; /* Добавлено это свойство */
+    filter: brightness(0.95);
+    }
+
+    &__element {
+        position: absolute;
+
+
+        &-horse {
+            transform: rotate(-10.59deg);
+            z-index: 6;
+            @include avg-tab(bottom, 17.59px, 9.3px);
+            @include avg-tab(right, 131.21px, 334.28px);
+            @include avg-tab(width, 76.71px, 153.87px);
+            @include avg-tab(height, 121.63px, 243.99px);
+        }
+
+        &-bishop {
+            z-index: 3;
+            transform: rotate(avg(15deg, 7.59deg));
+            @include avg-tab(width, 46.98px, 113.16px);
+            @include avg-tab(height, 104.8px, 252.44px);
+            @include avg-tab(bottom, 200.61px, 329.54px);
+            @include avg-tab(right, 79.69px, 159.04px);
+        }
+
+        &-king {
+            z-index: 3;
+            transform: rotate(-5.99deg);
+            @include avg-tab(width, 47.44px, 103.78px);
+            @include avg-tab(height, 116.98px, 255.89px);
+            @include avg-tab(bottom, 149.25px, 224.31px);
+            @include avg-tab(right, 252.8px, 506.92px);
+        }
+
+        &-city {
+            z-index: 4;
+            @include avg-tab(height, 246.81px, 452.5px);
+            @include avg-tab(width, 885.53px, 1623.5px);
+            @include avg-tab(bottom, 27.33px, 22.5px);
+            @include avg-tab(right, -109.43px, -141px);
+        }
+        
+        &-sun {
+            z-index: 2;
+            @include avg-tab(width, 297.47px, 660px);
+            @include avg-tab(height, 297.47px, 660px);
+            @include avg-tab(bottom, 104.69px, 128px);
+            @include avg-tab(right, 47.49px, 33px);
+        }
     }
 }

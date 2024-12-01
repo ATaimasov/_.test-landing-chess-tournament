@@ -7,6 +7,9 @@
 .header {
     position: relative;
 
+
+   
+
     & > *:not(:last-child) {
         @include mf-bp-rem('padding', (
             xs: 18px 20px 0px,
@@ -29,6 +32,12 @@
       
     }
 
+    &__content {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+
     &__hero {
         @include mf-bp-rem('padding-top', (
             xs: 40px,
@@ -44,5 +53,13 @@
             ));
         }
        
+    }
+
+    &__marquee {
+        @include mf-bp('margin-top', (
+            xs: 291px,
+            md: avg(291px, 132px),
+            xl: 132px
+        ));
     }
 }

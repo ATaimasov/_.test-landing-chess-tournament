@@ -13,8 +13,8 @@
         xs: 10px,
     ));
     @include mf-bp-rem('padding', (
-        xs: 0 20px 0px,
-        md: (0 avg(20px, 72px) 0px),
-        xl: 0 72px 0px
+            xs: 48px 20px 100px,
+            md: (avg(48px, 80px) avg(20px, 72px) avg(100px, 140px)),
+            xl: 80px 72px 140px
     ));
 }

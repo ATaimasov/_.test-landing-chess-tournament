@@ -21,6 +21,8 @@
     animation: marquee 15s linear infinite;
     color: white;
 
+
+
     @include mf-bp-rem('font-size', (
         xs: 16px,
         md: avg(16px, 22px),
@@ -36,10 +38,6 @@
         overflow: hidden;
         width: 100%;
         background-color: $color-attention;
-        @include mf-bp-rem('margin-top', (
-            xs: 329px,
-            md: avg(329px, 132px),
-            xl: 132px
-        ));
+
     }
 }
