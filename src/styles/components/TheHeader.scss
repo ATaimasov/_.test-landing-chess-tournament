@@ -6,11 +6,9 @@
 
 .header {
     position: relative;
+    
 
-
-   
-
-    & > *:not(:last-child) {
+    &__logo {
         @include mf-bp-rem('padding', (
             xs: 18px 20px 0px,
             md: (avg(18px, 26px) avg(20px, 72px) 0px),
@@ -32,17 +30,19 @@
       
     }
 
-    &__content {
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
+    // &__content {
+    //     display: grid;
+    //     @media screen and (min-width: $screen-md) {
+    //         grid-template-columns: 50% 50%;
+    //     }
+    // }
 
 
     &__hero {
-        @include mf-bp-rem('padding-top', (
-            xs: 40px,
-            md: avg(40px, 62px),
-            xl: 62px
+        @include mf-bp-rem('padding', (
+            xs: 40px 20px 0,
+            md: avg(40px, 62px) avg(20px, 72px) 0,
+            xl: 62px 72px 0,
         ));
 
         &-title {
