@@ -2,13 +2,11 @@
 @use "sass:color";
 
 .html {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Merriweather', Times, serif;
     font-style : normal;
     line-height: 20px;
     @include mf-bp-rem('font-size', (
-        xs: $font-size-html * 0.8,
-        sm: $font-size-html * 0.9,
-        xl: $font-size-html,
+        xs: $font-size-html,
     ));
 }
 
@@ -27,14 +25,8 @@
 .header,
 .main {
     &--grid {
-        min-width: 100%;
+        width: 100%;
     }
-
-    @include mf-bp-rem('padding', (
-        xs: 0 20px,
-        md: 0 avg(20px, 72px),
-        xl: 0 72px,
-    ));
 }
 // grid 3 rows end
 

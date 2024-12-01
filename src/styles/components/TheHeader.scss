@@ -1,14 +1,19 @@
 @use '@styles/global' as *;
 @use '@scss-components/company-logo';
 @use '@scss-components/hero';
+@use '@scss-components/UI/marquee';
+@use '@scss-components/UI/bg';
 
 .header {
+    position: relative;
 
-    @include mf-bp-rem('padding', (
-        xs: 18px,
-        md: avg(18px, 26px),
-        xl: 26px
-    ));
+    & > *:not(:last-child) {
+        @include mf-bp-rem('padding', (
+            xs: 18px 20px 0px,
+            md: (avg(18px, 26px) avg(20px, 72px) 0px),
+            xl: 26px 72px 0px
+        ));
+    }
 
     &-company__icon {
         @include mf-bp-rem('width', (
@@ -25,7 +30,7 @@
     }
 
     &__hero {
-        @include mf-bp-rem('padding', (
+        @include mf-bp-rem('padding-top', (
             xs: 40px,
             md: avg(40px, 62px),
             xl: 62px

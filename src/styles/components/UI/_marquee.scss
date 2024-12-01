@@ -1,0 +1,45 @@
+@use '@styles/global' as *;
+
+@keyframes marquee {
+    0% { 
+        transform: translateX(100%); 
+    }
+    100% { 
+        transform: translateX(-100%); 
+    }
+}
+
+
+.marquee {
+    font-family: 'Merriweather', Times, serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 110%;
+
+    display: inline-block;
+    white-space: nowrap; 
+    animation: marquee 15s linear infinite;
+    color: white;
+
+    @include mf-bp-rem('font-size', (
+        xs: 16px,
+        md: avg(16px, 22px),
+        xl: 22px
+    ));
+    @include mf-bp-rem('padding', (
+        xs: 10px 0px,
+        md: avg(10px, 18px) 0px,
+        xl: 18px 0px
+    ));
+
+    &-container {
+        overflow: hidden;
+        width: 100%;
+        background-color: $color-attention;
+        @include mf-bp-rem('margin-top', (
+            xs: 329px,
+            md: avg(329px, 132px),
+            xl: 132px
+        ));
+    }
+}

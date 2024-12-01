@@ -241,9 +241,9 @@ html {
 
 
 // need alternatives if you want to disable outline on focus
-// :focus,
-// a:active,
-// a:hover {
-//     outline: 0
-// }
+:focus,
+a:active,
+a:hover {
+    outline: transparent;
+}
 

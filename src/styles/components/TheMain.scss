@@ -12,4 +12,9 @@
     @include mf-bp-rem('gap', (
         xs: 10px,
     ));
+    @include mf-bp-rem('padding', (
+        xs: 0 20px 0px,
+        md: (0 avg(20px, 72px) 0px),
+        xl: 0 72px 0px
+    ));
 }

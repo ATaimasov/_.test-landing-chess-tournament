@@ -1,31 +1,58 @@
 @use '@styles/global' as *;
 
 .btn {
-    border-radius: 66px;
+    font-family: 'Golos Text', Times, serif;
+    font-weight: 500;
     text-decoration: none;
+    text-align: center;
+    line-height: 130%;
     cursor: pointer;
+    border-radius: 66px;
     transition: 
         background-color $animation-duration $animation, 
-        color $animation-duration $animation;
+        color $animation-duration $animation,
+        border $animation-duration $animation;
 
+    @include mf-bp-rem('white-space', (
+        xs: nowrap,
+        md: normal
+    ));
+    @include mf-bp-rem('font-size', (
+        xs: 16px,
+    ));
+    
     &-main {
         background-color: $color-btn-main-default;
         color: $color-btn-main-default-text;
+        border: 2px solid $color-btn-main-default; 
 
-        &:hover {
+        &:is(:hover, :focus-visible) {
             background-color: $color-btn-main-hover;
             color: $color-btn-main-hover-text;
+            border: 2px solid $color-btn-main-hover; 
         }
     }
 
     &-secondary {
-        background-color: $color-btn-secondary-default;
         color: $color-btn-secondary-default-text;
 
-        &:hover {
+        @include mf-bp('background-color', (
+            xs: white,
+            md: $color-btn-secondary-default
+        ));
+        @include mf-bp('border', (
+            xs: 2px solid white,
+            md: 2px solid $color-btn-main-default,
+        ));
+        @include mf-bp('opacity', (
+            xs: 90%,
+            md: 100%,
+        ));
+        &:is(:hover, :focus-visible) {
             background-color: $color-btn-secondary-hover;
             color: $color-btn-secondary-hover-text;
         }
+
     }
 
     &-arrow {
@@ -34,7 +61,7 @@
         background-color: $color-btn-arrow-default;
         color: $color-btn-arrow-text;
 
-        &:hover {
+        &:is(:hover, :focus-visible) {
             background-color: $color-btn-arrow-hover;
         }
 
