@@ -55,3 +55,23 @@
     #{$property}: $end-value;
   }
 }
+
+// @mixin avg-bp-bw($property, $start-value, $end-value, $start-breakpoint: 'md', $end-breakpoint: 'xl') {
+//   $start-screen: map.get($breakpoints, $start-breakpoint);
+//   $end-screen: map.get($breakpoints, $end-breakpoint);
+
+//   @if not $start-screen or not $end-screen {
+//     @error "Invalid breakpoint name. Please use one of: #{map.keys($breakpoints)}";
+//   }
+
+//   // Adaptive value between start and end breakpoints
+//   @media screen and (min-width: $start-screen) and (min-width: $end-screen - 1px) {
+//     $start-value-num: strip-unit($start-value);
+//     $end-value-num: strip-unit($end-value);
+//     $start-screen-num: strip-unit($start-screen);
+//     $end-screen-num: strip-unit($end-screen);
+
+//     #{$property}: calc(#{$start-value} + (#{$end-value-num} - #{$start-value-num}) * (100vw - #{$start-screen}) / (#{$end-screen-num} - #{$start-screen-num}));
+//   }
+// }
+

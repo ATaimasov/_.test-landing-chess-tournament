@@ -58,7 +58,10 @@
             @include avg-bp(height, 104.8px, 252.44px);
             @include avg-bp(bottom, 200.61px, 329.54px);
             @include avg-bp(right, 79.69px, 159.04px);
-            @include avg-bp(right, 159.04px, 277.04px, 'xl', 'xxl');
+            // @include avg-bp(right, 159.04px, 277.04px, 'xl', 'xxl');
+            // подогнать размер
+            //  от xl до xxl средний расчет. возможно улучить avg-bp
+            // @include avg-bp-bw(right, 159.04px, 277.04px, 'xl', 'xxl');
         }
 
         &-king {
@@ -68,7 +71,8 @@
             @include avg-bp(height, 116.98px, 255.89px);
             @include avg-bp(bottom, 149.25px, 224.31px);
             @include avg-bp(right, 252.8px, 506.92px);
-            @include avg-bp(right, 506.92px, 624.92px, 'xl', 'xxl');
+            // @include avg-bp(right, 506.92px, 624.92px, 'xl', 'xxl');
+            // подогнать размер
         }
 
         &-pawn {
@@ -81,6 +85,7 @@
                 xl: block,
             )); 
             @include avg-bp(right, 44.55px, 162.55px, 'xl', 'xxl');
+            // подогнать размер
         }
 
         &-city {
@@ -89,7 +94,8 @@
             @include avg-bp(width, 885.53px, 1623.5px);
             @include avg-bp(bottom, 27.33px, 22.5px);
             @include avg-bp(right, -109.43px, -141px);
-            @include avg-bp(right, -141px, 0px, 'xl', 'xxl');
+            // @include avg-bp(right, -141px, 0px, 'xl', 'xxl');
+            // подогнать размер
         }
         
         &-sun {
@@ -98,15 +104,9 @@
             @include avg-bp(height, 297.47px, 660px);
             @include avg-bp(bottom, 104.69px, 144px);
             @include avg-bp(right, 47.49px, 33px);
-            @include avg-bp(right, 33px, 151px, 'xl', 'xxl');
+            // @include avg-bp(right, 33px, 151px, 'xl', 'xxl');
+            // подогнать размер
         }
-
-        // @at-root .bg-container & {
-        //     max-width: 1623.5px;
-        //     margin: 0 auto;
-        //     left: 0;
-        //     right: 0;
-        // }
         
     }
 }
