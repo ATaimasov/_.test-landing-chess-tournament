@@ -1,6 +1,8 @@
 @use 'shared-breakpoints' as *;
 @use '@abstracts/functions/strip-unit-function' as *;
 @use 'sass:map';
+@use 'sass:list';
+@use 'sass:math';
 
 
 // .example {
@@ -75,3 +77,44 @@
 //   }
 // }
 
+//  добавление фиктивного брейкпоинта xxxl и его использование в качестве конечного брейкпоинта для последней пары значений в миксине. Это гарантирует, что последнее значение будет применено корректно.
+
+@mixin avg-bp-multi($property, $values...) {
+  $total-pairs: math.floor(math.div(list.length($values), 3));
+
+  @for $i from 1 through $total-pairs {
+      $start-index: ($i - 1) * 3 + 1;
+      $value: list.nth($values, $start-index);
+      $next-value: if($i < $total-pairs, list.nth($values, $start-index + 3), $value);
+      $start-breakpoint: list.nth($values, $start-index + 1);
+      // Изменение здесь: если это последняя пара, используем фиктивный брейкпойнт
+      $end-breakpoint: if($i == $total-pairs, 'xxxl', list.nth($values, $start-index + 2));
+
+
+      $start-screen: map.get($breakpoints, $start-breakpoint);
+      $end-screen: map.get($breakpoints, $end-breakpoint);
+
+      @if not $start-screen or not $end-screen {
+          @error "Invalid breakpoint name for pair #{$i}. Please use one of: #{map.keys($breakpoints)}";
+      }
+
+      @if $i == 1 {
+          #{$property}: $value;
+      }
+
+      $start-value-num: strip-unit($value);
+      $end-value-num: strip-unit($next-value);
+      $start-screen-num: strip-unit($start-screen);
+      $end-screen-num: strip-unit($end-screen);
+
+      @media screen and (min-width: $start-screen) {
+          #{$property}: calc(#{$value} + (#{$end-value-num} - #{$start-value-num}) * (min(100vw, #{$end-screen}) - #{$start-screen}) / (#{$end-screen-num} - #{$start-screen-num}));
+      }
+
+      @if $i == $total-pairs {
+          @media screen and (min-width: $end-screen) {
+              #{$property}: $next-value;
+          }
+      }
+  }
+}

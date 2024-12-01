@@ -1,7 +1,6 @@
 @use '@styles/global' as *;
 
 .bg {
-    background-color: $color-background ;
     user-select: none;
     background-position: center;
     width: 100%;
@@ -10,7 +9,7 @@
     top: 0;
     left: 0;
     overflow: hidden;
-    z-index: -50;
+    z-index: 1;
 
     &-container {
         position: absolute;
@@ -18,25 +17,12 @@
         width: 100%; 
         height: 100%; 
         overflow: hidden;
-        z-index: -1;
+        z-index: 1;
         max-width: 1623.5px;
         margin: 0 auto;
     }
 
-    &::after {
-
-    background-image: url('@images/bg-header.png');
-    background-size: cover;
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    mix-blend-mode: color-burn; /* Добавлено это свойство */
-    filter: brightness(0.95);
-    }
+   
 
     &__element {
         position: absolute;
@@ -44,7 +30,7 @@
 
         &-horse {
             transform: rotate(-10.59deg);
-            z-index: 6;
+            z-index: 500000;
             @include avg-bp(bottom, 17.59px, 9.3px);
             @include avg-bp(right, 131.21px, 334.28px);
             @include avg-bp(width, 76.71px, 153.87px);
@@ -96,6 +82,12 @@
             @include avg-bp(right, -109.43px, -141px);
             // @include avg-bp(right, -141px, 0px, 'xl', 'xxl');
             // подогнать размер
+
+            @include avg-bp-multi(right, 
+                -109.43px, 'md', 'xl',
+                -141px, 'xl', 'xxl',
+                0px, 'xxl', 'xxxl'
+                );
         }
         
         &-sun {
