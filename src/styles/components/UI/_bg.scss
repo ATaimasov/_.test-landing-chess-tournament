@@ -32,9 +32,13 @@
             transform: rotate(-10.59deg);
             z-index: 500000;
             @include avg-bp(bottom, 17.59px, 9.3px);
-            @include avg-bp(right, 131.21px, 334.28px);
             @include avg-bp(width, 76.71px, 153.87px);
             @include avg-bp(height, 121.63px, 243.99px);
+            @include avg-bp-multi(right, 
+            131.21px, 'md', 'xl',
+            334.28px, 'xl', 'xxl',
+            452.28px, 'xxl', 'xxxl'
+            );
         }
 
         &-bishop {
@@ -43,11 +47,11 @@
             @include avg-bp(width, 46.98px, 113.16px);
             @include avg-bp(height, 104.8px, 252.44px);
             @include avg-bp(bottom, 200.61px, 329.54px);
-            @include avg-bp(right, 79.69px, 159.04px);
-            // @include avg-bp(right, 159.04px, 277.04px, 'xl', 'xxl');
-            // подогнать размер
-            //  от xl до xxl средний расчет. возможно улучить avg-bp
-            // @include avg-bp-bw(right, 159.04px, 277.04px, 'xl', 'xxl');
+            @include avg-bp-multi(right, 
+            79.69px, 'md', 'xl',
+            159.04px, 'xl', 'xxl',
+            277.04px, 'xxl', 'xxxl'
+            );
         }
 
         &-king {
@@ -56,9 +60,11 @@
             @include avg-bp(width, 47.44px, 103.78px);
             @include avg-bp(height, 116.98px, 255.89px);
             @include avg-bp(bottom, 149.25px, 224.31px);
-            @include avg-bp(right, 252.8px, 506.92px);
-            // @include avg-bp(right, 506.92px, 624.92px, 'xl', 'xxl');
-            // подогнать размер
+            @include avg-bp-multi(right, 
+            252.8px, 'md', 'xl',
+            506.92px, 'xl', 'xxl',
+            624.92px, 'xxl', 'xxxl'
+            );
         }
 
         &-pawn {
@@ -70,8 +76,10 @@
                 xs: none,
                 xl: block,
             )); 
-            @include avg-bp(right, 44.55px, 162.55px, 'xl', 'xxl');
-            // подогнать размер
+            @include avg-bp-multi(right, 
+                44.55px, 'xl', 'xxl',
+                162.55px, 'xxl', 'xxxl'
+            );
         }
 
         &-city {
@@ -80,14 +88,11 @@
             @include avg-bp(width, 885.53px, 1623.5px);
             @include avg-bp(bottom, 27.33px, 22.5px);
             @include avg-bp(right, -109.43px, -141px);
-            // @include avg-bp(right, -141px, 0px, 'xl', 'xxl');
-            // подогнать размер
-
             @include avg-bp-multi(right, 
                 -109.43px, 'md', 'xl',
                 -141px, 'xl', 'xxl',
                 0px, 'xxl', 'xxxl'
-                );
+            );
         }
         
         &-sun {
@@ -95,9 +100,11 @@
             @include avg-bp(width, 297.47px, 660px);
             @include avg-bp(height, 297.47px, 660px);
             @include avg-bp(bottom, 104.69px, 144px);
-            @include avg-bp(right, 47.49px, 33px);
-            // @include avg-bp(right, 33px, 151px, 'xl', 'xxl');
-            // подогнать размер
+            @include avg-bp-multi(right, 
+                47.49px, 'md', 'xl',
+                33px, 'xl', 'xxl',
+                151px, 'xxl', 'xxxl'
+            );
         }
         
     }
