@@ -40,7 +40,7 @@
                 xs: 1fr,
                 md: 1fr auto
             ));
-            
+
             @media screen and (min-width: $screen-xs) {
                 grid-template-areas: 
                 "text1"
@@ -75,6 +75,36 @@
                 @include avg-bp('width', 335px, 394px);
             }
         }
+
+        &:last-child {
+
+            @media screen and (min-width: $screen-xs) {
+                grid-template-areas: 
+                "image"
+                "text"
+                "table"
+                ;
+            }
+            @media screen and (min-width: $screen-md) {
+                grid-template-areas: 
+                "image text"
+                "image table"
+                ;
+            }
+
+            & > img {
+                grid-area: image;
+                @include avg-bp('width', 335px, 609px);
+            }
+
+            & p:first-child {
+                grid-area: text1;
+            }
+
+            & table {
+                grid-area: table;
+            }
+        }
     }
 
     &__text {
@@ -94,5 +124,29 @@
         }
     }
 
-    
+
+    &__table {
+        font-family: 'Golos Text', Times, serif;
+        line-height: 120%;
+        color: #313131;
+
+        td, th {
+            border: 1px solid #D0D0D0;
+        }
+
+        tr {
+            & td:first-child {
+                font-weight: 400;
+            }
+            & td:last-child {
+                font-weight: 700;
+            }
+        }
+
+        @include mf-bp-rem('font-size', (
+            xs: 20px,
+        ));
+
+
+    }
 }
