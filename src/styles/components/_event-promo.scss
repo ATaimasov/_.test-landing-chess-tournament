@@ -4,19 +4,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    @include mf-bp-rem('gap', (
-        xs: 34px,
-        md: avg(34px, 64px),
-        xl: 64px
-    ));
 
     &__container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 80%;
-        max-width: 1222px;
+        width: 80vw;
+        max-width: 1222px;  
+        
+        @include mf-bp-rem('gap', (
+            xs: 34px,
+            md: avg(34px, 64px),
+            xl: 64px
+        ));
     }
 
     &__text-container {
@@ -24,10 +24,15 @@
         align-items: center;
         justify-items: center;
 
-        @include mf-bp-rem('gap', (
+        @include mf-bp-rem('column-gap', (
         xs: 24px,
         md: avg(24px, 64px),
         xl: 64px
+        ));
+
+        @include mf-bp-rem('row-gap', (
+        xs: 24px,
+        md: 0,
         ));
 
         &:first-child {
@@ -36,38 +41,45 @@
                 md: 1fr auto
             ));
             
-            // @media screen and (min-width: $screen-md) {
-            //     grid-template-areas: 
-            //     "text1 image"
-            //     "text2 image"
-            //     ;
-            // }
+            @media screen and (min-width: $screen-xs) {
+                grid-template-areas: 
+                "text1"
+                "image"
+                "text2"
+                ;
+            }
+            @media screen and (min-width: $screen-md) {
+                grid-template-areas: 
+                "text1 image"
+                "text2 image"
+                ;
+            }
 
 
             & > p:first-child {
-                order: 0;
+                grid-area: text1;
+                // order: 0;
                 @include mf-bp('display', (
                     md: inline,
                 ));
-                // grid-area: text1;
             }
 
             & > p:last-child {
+                grid-area: text2;
                 @include mf-bp('display', (
                     md: inline,
                 ));
-                @include mf-bp('order', (
-                    md: 1,
-                ));
-                // grid-area: text2;
+                // @include mf-bp('order', (
+                //     md: 1,
+                // ));
             }
 
             & > img {
+                grid-area: image;
                 @include avg-bp('width', 335px, 394px);
-                @include mf-bp('order', (
-                    md: 2,
-                ));
-                // grid-area: image;
+                // @include mf-bp('order', (
+                //     md: 2,
+                // ));
             }
         }
     }
