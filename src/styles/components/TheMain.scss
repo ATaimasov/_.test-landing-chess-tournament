@@ -1,4 +1,5 @@
 @use '@styles/global' as *;
+@use '@scss-components/event-promo';
 
 .main {
     overflow-y: auto; /* Add scrolling if content doesn't fit */
@@ -6,15 +7,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @include mf-bp-rem('margin', (
-        xs: 15px,
-    ));
     @include mf-bp-rem('gap', (
-        xs: 10px,
+        xs: 120px,
+        md: avg(120px, 200px),
+        xl: 200px
     ));
     @include mf-bp-rem('padding', (
-            xs: 48px 20px 100px,
-            md: (avg(48px, 80px) avg(20px, 72px) avg(100px, 140px)),
-            xl: 80px 72px 140px
+        xs: 48px 20px 100px,
+        md: (avg(48px, 80px) avg(20px, 72px) avg(100px, 140px)),
+        xl: 80px 72px 140px
     ));
 }

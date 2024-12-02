@@ -76,7 +76,6 @@
     }
 
     &__marquee {
-        z-index: 10;
         @include mf-bp('margin-top', (
             xs: 291px,
             md: avg(291px, 132px),

@@ -56,29 +56,6 @@
       }
     }
   } 
-  
-  // @else {
-  //   // Backward compatibility with the old syntax
-  //   $min: if(list.length($values) >= 1, list.nth($values, 1), null);
-  //   $medium: if(list.length($values) >= 2, list.nth($values, 2), null);
-  //   $max: if(list.length($values) >= 3, list.nth($values, 3), null);
-
-  //   @if $min != null {
-  //     #{$property}: process-values-rem($min);
-  //   }
-
-  //   @if $medium != null {
-  //     @media screen and (min-width: shared.$screen-md) {
-  //       #{$property}: process-values-rem($medium);
-  //     }
-  //   }
-
-  //   @if $max != null {
-  //     @media screen and (min-width: shared.$screen-xl) {
-  //       #{$property}: process-values-rem($max);
-  //     }
-  //   }
-  // }
 }
 
 //  concise syntax

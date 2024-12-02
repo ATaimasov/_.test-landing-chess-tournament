@@ -87,7 +87,7 @@
             @include avg-bp(height, 246.81px, 452.5px);
             @include avg-bp(width, 885.53px, 1623.5px);
             @include avg-bp(bottom, 27.33px, 22.5px);
-            @include avg-bp(right, -109.43px, -141px);
+            // @include avg-bp(right, -109.43px, -141px);
             @include avg-bp-multi(right, 
                 -109.43px, 'md', 'xl',
                 -141px, 'xl', 'xxl',
