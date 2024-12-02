@@ -1,0 +1,1 @@
+const promoContent = document.querySelector('.event-promo__content');
