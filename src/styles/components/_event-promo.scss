@@ -20,13 +20,10 @@
     }
 
     &__text-container {
-        display: flex;
+        display: grid;
         align-items: center;
+        justify-items: center;
 
-        @include mf-bp('flex-direction', (
-            xs: column,
-            md: row,
-        ));
         @include mf-bp-rem('gap', (
         xs: 24px,
         md: avg(24px, 64px),
@@ -34,12 +31,25 @@
         ));
 
         &:first-child {
+            @include mf-bp('grid-template-columns', (
+                xs: 1fr,
+                md: 1fr auto
+            ));
+            
+            // @media screen and (min-width: $screen-md) {
+            //     grid-template-areas: 
+            //     "text1 image"
+            //     "text2 image"
+            //     ;
+            // }
+
 
             & > p:first-child {
                 order: 0;
                 @include mf-bp('display', (
                     md: inline,
                 ));
+                // grid-area: text1;
             }
 
             & > p:last-child {
@@ -49,6 +59,7 @@
                 @include mf-bp('order', (
                     md: 1,
                 ));
+                // grid-area: text2;
             }
 
             & > img {
@@ -56,6 +67,7 @@
                 @include mf-bp('order', (
                     md: 2,
                 ));
+                // grid-area: image;
             }
         }
     }
