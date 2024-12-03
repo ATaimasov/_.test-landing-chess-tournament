@@ -23,9 +23,11 @@
     &__item {
         background-color: $color-background ;
         position: relative;
-        display: flex;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        align-items: start;
         gap: 16px;
+        max-width: 394px;
 
         @include mf-bp-rem('padding', (
             xs: 20px,
