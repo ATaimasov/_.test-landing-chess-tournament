@@ -1,0 +1,117 @@
+@use '@styles/global' as *;
+
+.info-stages {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    &__list {
+        display: grid;
+        counter-reset: stages 0;
+        gap: 50px;
+        // @include mf-bp-rem('padding', (
+        //     xs: 24px,
+        //     md: avg(24px, 64px),
+        //     xl: 20px 
+        // ))
+    }
+
+    &
+
+    &__item {
+        background-color: $color-background ;
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+
+        @include mf-bp-rem('padding', (
+            xs: 20px,
+        ));
+
+        &::before {
+            position: relative;
+            top: 0;
+            left: 0;
+            font-size: px-to-rem(20px);
+            font-weight: 600;
+            content: counter(stages);
+            counter-increment: stages;
+            background-color: white;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__controls {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+    }
+
+    &__control {
+        user-select: none;
+        position: relative;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background-color: $color-btn-arrow-default;
+
+        &--prev {
+            &::after {
+                content: 'b';
+                position: absolute;
+                top: 35%;
+                left: 65%;
+                color: transparent;
+                width: 40%;
+                height: 40%;
+                border-right: 2px solid $color-btn-arrow-text;
+                border-bottom: 2px solid $color-btn-arrow-text;
+                transform: rotate(135deg) translateY(50%) translateX(50%);
+            }
+        }
+        &--next {
+            &::after {
+                content: 'b';
+                position: absolute;
+                top: 35%;
+                left: 50%;
+                color: transparent;
+                width: 40%;
+                height: 40%;
+                border-left: 2px solid $color-btn-arrow-text;
+                border-top: 2px solid $color-btn-arrow-text;
+                transform: rotate(135deg) translateY(50%) translateX(50%);
+            }
+        }
+
+        &--disabled {
+            background-color: $color-btn-arrow-disabled;
+        }
+    }
+
+    &__pagination {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+
+        &-item {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: $color-btn-arrow-disabled;
+        }
+
+        &-item--active {
+            background-color: $color-btn-arrow-default;
+        }
+    }
+}

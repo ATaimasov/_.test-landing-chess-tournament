@@ -9,7 +9,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 80vw;
+        width: 89.6vw;
         max-width: 1222px;  
         
         @include mf-bp-rem('gap', (
@@ -24,18 +24,18 @@
         align-items: center;
         justify-items: center;
 
-        @include mf-bp-rem('column-gap', (
-        xs: 24px,
-        md: avg(24px, 64px),
-        xl: 64px
-        ));
-
-        @include mf-bp-rem('row-gap', (
-        xs: 24px,
-        md: 0,
-        ));
-
         &:first-child {
+            @include mf-bp-rem('column-gap', (
+                xs: 24px,
+                md: avg(24px, 64px),
+                xl: 64px
+            ));
+
+            @include mf-bp-rem('row-gap', (
+                xs: 24px,
+                md: 0,
+            ));
+
             @include mf-bp('grid-template-columns', (
                 xs: 1fr,
                 md: 1fr auto
@@ -76,7 +76,18 @@
             }
         }
 
-        &:last-child {
+        &:nth-child(2) {
+
+            @include mf-bp-rem('column-gap', (
+                md: avg(24px, 64px),
+                xl: 44px,
+            ));
+
+            @include mf-bp-rem('row-gap', (
+                xs: 24px,
+                xl: 64px,
+
+            ));
 
             @media screen and (min-width: $screen-xs) {
                 grid-template-areas: 
@@ -85,20 +96,35 @@
                 "table"
                 ;
             }
-            @media screen and (min-width: $screen-md) {
+            @media screen and (min-width: $screen-lg) {
                 grid-template-areas: 
                 "image text"
                 "image table"
                 ;
+               justify-items: start;
+               grid-template-columns: 45% 55%;
+            }
+
+            @media screen and (min-width: $screen-xl) {
+               grid-template-columns: 38.79% 61.21%;
+
             }
 
             & > img {
                 grid-area: image;
+                max-width: 100%;
                 @include avg-bp('width', 335px, 609px);
             }
 
-            & p:first-child {
-                grid-area: text1;
+            & p {
+                grid-area: text;
+
+                @media screen and (min-width: $screen-md) {
+                    text-align: center;
+                }
+                @media screen and (min-width: $screen-lg) {
+                    text-align: left;
+                }
             }
 
             & table {
@@ -130,22 +156,61 @@
         line-height: 120%;
         color: #313131;
 
-        td, th {
-            border: 1px solid #D0D0D0;
+        & tr:not(:last-child) {
+            border-bottom: 2px solid #D0D0D0;
         }
 
-        tr {
-            & td:first-child {
-                font-weight: 400;
-            }
-            & td:last-child {
+        s {
+            text-decoration-color: $color-attention;
+        }
+
+        tbody tr {
+            td {
                 font-weight: 700;
+                position: relative;
+                @include mf-bp-rem('padding', (
+                    xs: 52px 0 16px,
+                    xl: 16px 0 16px 322px
+                ));
+
+                &::after {
+                    content: attr(data-label) / attr(data-label);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    font-weight: 400;
+                    @include mf-bp-rem('top', (
+                        xs: 16px,
+                    ));
+                }
+                &::before {
+                    @media screen and (min-width: $screen-xl) {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 306px;
+                        font-weight: 400;
+                        height: 100%;
+                        width: 2px;
+                        background-color: #D0D0D0;
+                    }
+                }
+
+                
             }
         }
 
         @include mf-bp-rem('font-size', (
             xs: 20px,
         ));
+
+        tfoot {
+            td { 
+                padding-top: 20.8px;
+            }
+            color: $color-more;
+            font-size: px-to-rem(18px);
+        }
 
 
     }

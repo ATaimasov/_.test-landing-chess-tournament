@@ -1,8 +1,9 @@
 @use '@styles/global' as *;
 @use '@scss-components/event-promo';
+@use '@scss-components/info-stages';
+@use '@scss-components/carousel';
 
 .main {
-    overflow-y: auto; /* Add scrolling if content doesn't fit */
     display: flex;
     flex-direction: column;
     justify-content: center;
