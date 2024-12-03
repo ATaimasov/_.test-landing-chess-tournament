@@ -1,7 +1,8 @@
 @use '@styles/global' as *;
 @use '@scss-components/event-promo';
-@use '@scss-components/info-stages';
 @use '@scss-components/carousel';
+@use '@scss-components/info-stages';
+@use '@scss-components/participants';
 
 .main {
     display: flex;

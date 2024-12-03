@@ -1,2 +1,4 @@
 import '@styles/style.scss'
-import './carousel.js'
+
+import '@scripts/settings/carouselsSettings.js';
+import '@scripts/settings/marqueeSettings.js';

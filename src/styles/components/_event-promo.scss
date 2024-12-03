@@ -61,12 +61,20 @@
                 @include mf-bp('display', (
                     md: inline,
                 ));
+
+                & > span {
+                    @include mf-bp('display', (
+                        md: none,
+                        xl: inline,
+                    ));
+                }
             }
 
-            & p:last-child {
+            & p:nth-child(2) {
                 grid-area: text2;
                 @include mf-bp('display', (
                     md: inline,
+                    xl: none,
                 ));
             }
 
@@ -107,7 +115,6 @@
 
             @media screen and (min-width: $screen-xl) {
                grid-template-columns: 38.79% 61.21%;
-
             }
 
             & > img {
@@ -137,7 +144,7 @@
         font-family: 'Merriweather', Times, serif;
         font-weight: 400;
         text-transform: uppercase;
-        line-height: 135%;
+        line-height: 1.35em;
         @include mf-bp-rem('font-size', (
             xs: 28px,
             md: avg(28px, 36px),
@@ -153,7 +160,7 @@
 
     &__table {
         font-family: 'Golos Text', Times, serif;
-        line-height: 120%;
+        line-height: 1.2em;
         color: #313131;
 
         & tr:not(:last-child) {

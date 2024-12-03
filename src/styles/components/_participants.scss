@@ -1,0 +1,64 @@
+@use '@styles/global' as *;
+@use '@scss-components/UI/participant';
+
+.participants {
+    display: grid;
+    gap: px-to-rem(40px);
+    grid-template-areas: none;
+    max-width: 1222px;
+    align-items: center;
+    @include mf-bp-rem('row-gap', (
+        xs: 40px,
+        md: avg(40px, 60px),
+        xl: 60px
+    ));
+
+    @media screen and (min-width: $screen-xl) {
+        grid-template-areas: 
+        "title controls"
+        "participants participants"
+        ;
+    }
+
+    
+
+    &__title {
+        font-family: 'Merriweather', Times, serif;
+        line-height: 1.1em;
+        font-weight: 400;
+        text-transform: uppercase;
+        @include mf-bp-rem('font-size', (
+            xs: 36px,
+            md: avg(36px, 54px),
+            xl: 54px
+        ));
+
+        @media screen and (min-width: $screen-xl) {
+            grid-area: title;
+        }
+    }
+
+    &__controls {
+        @media screen and (min-width: $screen-xl) {
+            grid-area: controls;
+        }
+
+    }
+
+    &__slide {
+        width: 100%;
+        transition: opacity 0.5s $animation;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        column-gap: px-to-rem(57px);
+    }
+
+    &__list {
+        @media screen and (min-width: $screen-xl) {
+            grid-area: participants;
+        }
+    }
+
+}
