@@ -2,13 +2,13 @@ const infoStagesSection = document.getElementById('info-stages');
 
 
 carousel(infoStagesSection, {
-    // infinity: true
     bullets: true
 });
 
 function carousel(section, options = {
     infinity: false,
-    bullets: false
+    bullets: true,
+    slidesToShow: 1
 }) {
     if (!section) {
         throw Error('section is not found');
@@ -20,7 +20,28 @@ function carousel(section, options = {
     const prevButton = controls.querySelector('.carousel__control--prev');
     const nextButton = controls.querySelector('.carousel__control--next');
 
-    const bullets  = controls.querySelectorAll('.carousel__bullet');
+    let bullets = [];
+
+    function generateBullets() {
+        if (options.bullets) {
+            const bulletsContainer = document.createElement('div');
+            bulletsContainer.classList.add('carousel__bullets');
+
+            for (let i = 0; i < slides.length; i++) {
+                const bullet = document.createElement('span');
+                bullet.classList.add('carousel__bullet');
+                if (i === 0) {
+                    bullet.classList.add('carousel__bullet--active');
+                }
+                bullet.addEventListener('click', () => showSlide(i));
+                bulletsContainer.appendChild(bullet);
+                bullets.push(bullet);
+            }
+            
+            controls.insertBefore(bulletsContainer, nextButton);
+        }
+    }
+    generateBullets();
 
 
     let slideIndex = 0;
@@ -29,20 +50,17 @@ function carousel(section, options = {
 
         function checkInfinity() {
             if (options.infinity) {
-                if (index < 0) {
-                    index = slides.length - 1;
-                } else if (index >= slides.length) {
-                    index = 0;
-                }
+                index = (index + slides.length) % slides.length;
             } else {
                 index = Math.max(0, Math.min(index, slides.length - 1));
             }
         }
         checkInfinity();
 
-        slides[slideIndex].classList.remove('slide-active');
-        slides[index].classList.add('slide-active');
-        
+        slides[slideIndex].classList.remove('carousel__slide--active');
+
+        slides[index].classList.add('carousel__slide--active');
+
         function checkBullets() {
             if(options.bullets) {
                 bullets[slideIndex].classList.remove('carousel__bullet--active');
@@ -77,15 +95,6 @@ function carousel(section, options = {
 
     prevButton.addEventListener('click', handleControlClick);
     nextButton.addEventListener('click', handleControlClick);
-
-    function interactionWithBullets() {
-        if (options.bullets) {
-            bullets.forEach((bullet, index) => {
-                bullet.addEventListener('click', () => showSlide(index));
-            });
-        }
-    }
-    interactionWithBullets()
     
     showSlide(slideIndex);
 }
