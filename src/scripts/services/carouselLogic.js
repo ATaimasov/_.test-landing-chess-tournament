@@ -6,6 +6,8 @@ function carousel(section, options = {
     slideConfiguration: null,
     autoSlide: false,
     autoSlideInterval: 5000,
+    countAllActiveSlidesWithSeparator: false,
+    // countAllActiveSlides: false
 }) {
     if (!section) {
         throw Error('section не найден');
@@ -25,6 +27,7 @@ function carousel(section, options = {
     let counter;
     let slideIndex = 0;
     let totalSlides = options.slideConfiguration.length;
+    let totalItems = items.length;
 
     function generateSlides() {
         carousel.innerHTML = '';
@@ -77,12 +80,16 @@ function carousel(section, options = {
         if (options.counter) {
             const counterElement = document.createElement('div');
             counterElement.classList.add('carousel__counter');
-            counterElement.textContent = `1 / ${totalSlides}`;
+            if (options.countAllActiveSlidesWithSeparator) {
+                counterElement.textContent = `1/${totalItems}`;
+            } else {
+                counterElement.textContent = `1/${totalSlides}`;
+            }
             controls.insertBefore(counterElement, nextButton);
             counter = counterElement;
         }
     }
-
+    
     let autoSlideTimer;
 
     function startAutoSlide() {
@@ -122,7 +129,14 @@ function carousel(section, options = {
 
         // update counter if there is any
         if (options.counter) {
-            counter.textContent = `${index + 1} / ${totalSlides}`;
+            if (options.countAllActiveSlidesWithSeparator) {
+                const itemsPerSlide = options.slideConfiguration[index];
+                const startItem = index * itemsPerSlide + 1;
+                const endItem = Math.min(startItem + itemsPerSlide - 1, totalItems);
+                counter.textContent = `${startItem}-${endItem} / ${totalItems}`;
+            } else {
+                counter.textContent = `${index + 1} / ${totalSlides}`;
+            }
         }
 
 

@@ -14,7 +14,8 @@ function carouselsBreakpoints() {
             infinity: true,
             additionalClass: 'participants',
             autoSlide: true,
-            autoSlideInterval: 4000
+            autoSlideInterval: 4000,
+            
         });
     } else if (window.innerWidth < 1366) {
         generateCarousel('info-stages', {
@@ -29,7 +30,8 @@ function carouselsBreakpoints() {
             infinity: true,
             additionalClass: 'participants',
             autoSlide: true,
-            autoSlideInterval: 4000
+            autoSlideInterval: 4000,
+            
         });
     } else {
         clearCarousel('info-stages');
@@ -39,10 +41,9 @@ function carouselsBreakpoints() {
             infinity: true,
             additionalClass: 'participants',
             autoSlide: true,
-            autoSlideInterval: 4000
+            autoSlideInterval: 4000,
+            
         });
-        // For large screens you don't need to create a carousel
-        // or create it with a different configuration
     }
 }
 
