@@ -64,7 +64,7 @@
 
                 & > span {
                     @include mf-bp('display', (
-                        md: none,
+                        xs: none,
                         xl: inline,
                     ));
                 }
