@@ -1,47 +1,91 @@
+const infoStagesSection = document.getElementById('info-stages');
 
 
+carousel(infoStagesSection, {
+    // infinity: true
+    bullets: true
+});
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     const carousel = document.querySelector('.info-stages__list');
-//     const items = carousel.querySelectorAll('.info-stages__item');
-//     const prev = document.querySelector('.info-stages__control--prev');
-//     const next = document.querySelector('.info-stages__control--next');
-//     const pagination = document.querySelector('.info-stages__pagination');
-//     const paginationItems = pagination.querySelectorAll('.info-stages__pagination-item');
+function carousel(section, options = {
+    infinity: false,
+    bullets: false
+}) {
+    if (!section) {
+        throw Error('section is not found');
+    }
 
-//     let currentIndex = 0;
-//     const itemsPerSlide = window.innerWidth >= 768 ? 2 : 1;
+    const carousel = section.querySelector('.carousel');
+    const controls = section.querySelector('.carousel__controls');
+    const slides   = carousel.children;
+    const prevButton = controls.querySelector('.carousel__control--prev');
+    const nextButton = controls.querySelector('.carousel__control--next');
 
-//     function updateCarousel() {
-//         const offset = -currentIndex * (100 / itemsPerSlide);
-//         carousel.style.transform = `translateX(${offset}%)`;
-//     }
-
-//     function nextSlide() {
-//         currentIndex = (currentIndex + 1) % (items.length - itemsPerSlide + 1);
-//         updateCarousel();
-//     }
-
-//     function prevSlide() {
-//         currentIndex = (currentIndex - 1 + items.length) % (items.length - itemsPerSlide + 1);
-//         updateCarousel();
-//     }
-
-//     next.addEventListener('click', nextSlide);
-//     prev.addEventListener('click', prevSlide);
+    const bullets  = controls.querySelectorAll('.carousel__bullet');
 
 
-//     window.addEventListener('resize', () => {
-//         const newItemsPerSlide = window.innerWidth >= 768 ? 2 : 1;
-//         if (newItemsPerSlide !== itemsPerSlide) {
-//             itemsPerSlide = newItemsPerSlide;
-//             currentIndex = 0;
-//             updateCarousel();
-//         }
-//     });
+    let slideIndex = 0;
 
-//     // Инициализация карусели
-//     updateCarousel();
+    function showSlide(index) {
+
+        function checkInfinity() {
+            if (options.infinity) {
+                if (index < 0) {
+                    index = slides.length - 1;
+                } else if (index >= slides.length) {
+                    index = 0;
+                }
+            } else {
+                index = Math.max(0, Math.min(index, slides.length - 1));
+            }
+        }
+        checkInfinity();
+
+        slides[slideIndex].classList.remove('slide-active');
+        slides[index].classList.add('slide-active');
+        
+        function checkBullets() {
+            if(options.bullets) {
+                bullets[slideIndex].classList.remove('carousel__bullet--active');
+                bullets[index].classList.add('carousel__bullet--active');
+            }
+        }
+        checkBullets();
+
+        slideIndex = index;
+
+        updateButtonStates();
+    }
 
 
-// });
+    function updateButtonStates() {
+        if (options.infinity) {
+            prevButton.classList.remove('carousel__control--disabled');
+            nextButton.classList.remove('carousel__control--disabled');
+        } else {
+            prevButton.classList.toggle('carousel__control--disabled', slideIndex === 0);
+            nextButton.classList.toggle('carousel__control--disabled', slideIndex === slides.length - 1);
+        }
+    }
+    
+    function handleControlClick(e) {
+        if (e.currentTarget.classList.contains('carousel__control--prev')) {
+            showSlide(slideIndex - 1);
+        } else if (e.currentTarget.classList.contains('carousel__control--next')) {
+            showSlide(slideIndex + 1);
+        }
+    }
+
+    prevButton.addEventListener('click', handleControlClick);
+    nextButton.addEventListener('click', handleControlClick);
+
+    function interactionWithBullets() {
+        if (options.bullets) {
+            bullets.forEach((bullet, index) => {
+                bullet.addEventListener('click', () => showSlide(index));
+            });
+        }
+    }
+    interactionWithBullets()
+    
+    showSlide(slideIndex);
+}

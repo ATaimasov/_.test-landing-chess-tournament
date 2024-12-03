@@ -94,26 +94,7 @@
                 transform: rotate(135deg) translateY(50%) translateX(50%);
             }
         }
-
-        &--disabled {
-            background-color: $color-btn-arrow-disabled;
-        }
     }
 
-    &__pagination {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-
-        &-item {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: $color-btn-arrow-disabled;
-        }
-
-        &-item--active {
-            background-color: $color-btn-arrow-default;
-        }
-    }
+   
 }
