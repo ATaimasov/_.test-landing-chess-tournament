@@ -1,30 +1,20 @@
 @use "@styles/global" as *;
 
-.footer {
-  &__text {
-    font-family: "Golos Text", Times, serif;
-    font-weight: 400;
-    line-height: 1.2em;
-    font-size: $font-size-footer;
-    background-color: $color-footer;
+.footer__text {
+  font-family: "Golos Text", Times, serif;
+  font-weight: 400;
+  line-height: 1.2em;
+  font-size: $font-size-footer;
+  background-color: $color-footer;
 
-    @include mf-bp-rem(
-      "padding",
-      (
-        xs: 40px 20px 60px,
-        md: (
-          40px avg(20px, 72px) avg(60px, 72px),
-        ),
-        xl: 40px 72px 72px,
-      )
-    );
-  }
-
-  &__marquee {
-    // @include mf-bp('margin-top', (
-    //     xs: 100px,
-    //     md: avg(100px, 140px),
-    //     xl: 140px
-    // ));
-  }
+  @include mf-bp-rem(
+    "padding",
+    (
+      xs: 40px 20px 60px,
+      md: (
+        40px avg(20px, 72px) avg(60px, 72px),
+      ),
+      xl: 40px 72px 72px,
+    )
+  );
 }

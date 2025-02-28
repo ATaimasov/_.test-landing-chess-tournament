@@ -2,10 +2,10 @@
 
 .btn {
   font-family: "Golos Text", Times, serif;
-  font-weight: 500;
-  text-decoration: none;
-  text-align: center;
   line-height: 1.3em;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
   cursor: pointer;
   border-radius: 66px;
   transition:
@@ -26,61 +26,61 @@
       xs: 16px,
     )
   );
+}
 
-  &-main {
-    background-color: $color-btn-main-default;
-    color: $color-btn-main-default-text;
-    border: 2px solid $color-btn-main-default;
+.btn-main {
+  background-color: $color-btn-main-default;
+  color: $color-btn-main-default-text;
+  border: 2px solid $color-btn-main-default;
 
-    &:is(:hover, :focus-visible) {
-      background-color: $color-btn-main-hover;
-      color: $color-btn-main-hover-text;
-      border: 2px solid $color-btn-main-hover;
-    }
+  &:is(:hover, :focus-visible) {
+    background-color: $color-btn-main-hover;
+    color: $color-btn-main-hover-text;
+    border: 2px solid $color-btn-main-hover;
+  }
+}
+
+.btn-secondary {
+  color: $color-btn-secondary-default-text;
+
+  @include mf-bp(
+    "background-color",
+    (
+      xs: white,
+      md: $color-btn-secondary-default,
+    )
+  );
+  @include mf-bp(
+    "border",
+    (
+      xs: 2px solid white,
+      md: 2px solid $color-btn-main-default,
+    )
+  );
+  @include mf-bp(
+    "opacity",
+    (
+      xs: 90%,
+      md: 100%,
+    )
+  );
+  &:is(:hover, :focus-visible) {
+    background-color: $color-btn-secondary-hover;
+    color: $color-btn-secondary-hover-text;
+  }
+}
+
+.btn-arrow {
+  border-radius: 50%;
+
+  background-color: $color-btn-arrow-default;
+  color: $color-btn-arrow-text;
+
+  &:is(:hover, :focus-visible) {
+    background-color: $color-btn-arrow-hover;
   }
 
-  &-secondary {
-    color: $color-btn-secondary-default-text;
-
-    @include mf-bp(
-      "background-color",
-      (
-        xs: white,
-        md: $color-btn-secondary-default,
-      )
-    );
-    @include mf-bp(
-      "border",
-      (
-        xs: 2px solid white,
-        md: 2px solid $color-btn-main-default,
-      )
-    );
-    @include mf-bp(
-      "opacity",
-      (
-        xs: 90%,
-        md: 100%,
-      )
-    );
-    &:is(:hover, :focus-visible) {
-      background-color: $color-btn-secondary-hover;
-      color: $color-btn-secondary-hover-text;
-    }
-  }
-
-  &-arrow {
-    border-radius: 50%;
-
-    background-color: $color-btn-arrow-default;
-    color: $color-btn-arrow-text;
-
-    &:is(:hover, :focus-visible) {
-      background-color: $color-btn-arrow-hover;
-    }
-
-    &:disabled {
-      background-color: $color-btn-arrow-disabled;
-    }
+  &:disabled {
+    background-color: $color-btn-arrow-disabled;
   }
 }

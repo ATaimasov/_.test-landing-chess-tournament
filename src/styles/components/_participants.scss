@@ -3,10 +3,10 @@
 
 .participants {
   display: grid;
-  gap: px-to-rem(40px);
   grid-template-areas: none;
-  max-width: 1222px;
   align-items: center;
+  gap: px-to-rem(40px);
+  max-width: 1222px;
   @include mf-bp-rem(
     "row-gap",
     (
@@ -21,45 +21,44 @@
       "title controls"
       "participants participants";
   }
+}
+.participants__title {
+  font-family: "Merriweather", Times, serif;
+  line-height: 1.1em;
+  font-weight: 400;
+  text-transform: uppercase;
+  @include mf-bp-rem(
+    "font-size",
+    (
+      xs: 36px,
+      md: avg(36px, 54px),
+      xl: 54px,
+    )
+  );
 
-  &__title {
-    font-family: "Merriweather", Times, serif;
-    line-height: 1.1em;
-    font-weight: 400;
-    text-transform: uppercase;
-    @include mf-bp-rem(
-      "font-size",
-      (
-        xs: 36px,
-        md: avg(36px, 54px),
-        xl: 54px,
-      )
-    );
-
-    @media screen and (min-width: $screen-xl) {
-      grid-area: title;
-    }
+  @media screen and (min-width: $screen-xl) {
+    grid-area: title;
   }
+}
 
-  &__controls {
-    @media screen and (min-width: $screen-xl) {
-      grid-area: controls;
-    }
+.participants__controls {
+  @media screen and (min-width: $screen-xl) {
+    grid-area: controls;
   }
+}
 
-  &__slide {
-    width: 100%;
-    transition: opacity 0.5s $animation;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    column-gap: px-to-rem(57px);
-  }
+.participants__slide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: px-to-rem(57px);
+  width: 100%;
+  transition: opacity 0.5s $animation;
+}
 
-  &__list {
-    @media screen and (min-width: $screen-xl) {
-      grid-area: participants;
-    }
+.participants__list {
+  @media screen and (min-width: $screen-xl) {
+    grid-area: participants;
   }
 }

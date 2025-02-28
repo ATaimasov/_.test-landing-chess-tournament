@@ -1,150 +1,141 @@
 @use "@styles/global" as *;
 
 .bg {
-  user-select: none;
-  background-position: center;
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  overflow: hidden;
   z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  overflow: hidden;
+  user-select: none;
+}
 
-  &-container {
-    position: absolute;
-    background-color: $color-background;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-    max-width: 1623.5px;
-    margin: 0 auto;
-  }
+.bg-container {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  max-width: 1623.5px;
+  margin: 0 auto;
+  background-color: $color-background;
+  overflow: hidden;
+}
 
-  &__element {
-    position: absolute;
+.bg__element {
+  position: absolute;
+}
 
-    &-horse {
-      transform: rotate(-10.59deg);
-      z-index: 500000;
-      @include avg-bp(bottom, 17.59px, 9.3px);
-      @include avg-bp(width, 76.71px, 153.87px);
-      @include avg-bp(height, 121.63px, 243.99px);
-      @include avg-bp-multi(
-        right,
-        131.21px,
-        "md",
-        "xl",
-        334.28px,
-        "xl",
-        "xxl",
-        452.28px,
-        "xxl",
-        "xxxl"
-      );
-    }
+.bg__element-horse {
+  z-index: 500000;
+  transform: rotate(-10.59deg);
+  @include avg-bp(bottom, 17.59px, 9.3px);
+  @include avg-bp(width, 76.71px, 153.87px);
+  @include avg-bp(height, 121.63px, 243.99px);
+  @include avg-bp-multi(
+    right,
+    131.21px,
+    "md",
+    "xl",
+    334.28px,
+    "xl",
+    "xxl",
+    452.28px,
+    "xxl",
+    "xxxl"
+  );
+}
 
-    &-bishop {
-      z-index: 3;
-      transform: rotate(avg(15deg, -7.59deg));
-      @include avg-bp(width, 46.98px, 113.16px);
-      @include avg-bp(height, 104.8px, 252.44px);
-      @include avg-bp(bottom, 200.61px, 329.54px);
-      @include avg-bp-multi(
-        right,
-        79.69px,
-        "md",
-        "xl",
-        159.04px,
-        "xl",
-        "xxl",
-        277.04px,
-        "xxl",
-        "xxxl"
-      );
-    }
+.bg__element-bishop {
+  z-index: 3;
+  transform: rotate(avg(15deg, -7.59deg));
+  @include avg-bp(width, 46.98px, 113.16px);
+  @include avg-bp(height, 104.8px, 252.44px);
+  @include avg-bp(bottom, 200.61px, 329.54px);
+  @include avg-bp-multi(
+    right,
+    79.69px,
+    "md",
+    "xl",
+    159.04px,
+    "xl",
+    "xxl",
+    277.04px,
+    "xxl",
+    "xxxl"
+  );
+}
 
-    &-king {
-      z-index: 3;
-      transform: rotate(-5.99deg);
-      @include avg-bp(width, 47.44px, 103.78px);
-      @include avg-bp(height, 116.98px, 255.89px);
-      @include avg-bp(bottom, 149.25px, 224.31px);
-      @include avg-bp-multi(
-        right,
-        252.8px,
-        "md",
-        "xl",
-        506.92px,
-        "xl",
-        "xxl",
-        624.92px,
-        "xxl",
-        "xxxl"
-      );
-    }
+.bg__element-king {
+  z-index: 3;
+  transform: rotate(-5.99deg);
+  @include avg-bp(width, 47.44px, 103.78px);
+  @include avg-bp(height, 116.98px, 255.89px);
+  @include avg-bp(bottom, 149.25px, 224.31px);
+  @include avg-bp-multi(
+    right,
+    252.8px,
+    "md",
+    "xl",
+    506.92px,
+    "xl",
+    "xxl",
+    624.92px,
+    "xxl",
+    "xxxl"
+  );
+}
 
-    &-pawn {
-      z-index: 6;
-      width: 82.61px;
-      height: 122.22px;
-      bottom: 79.58px;
-      @include mf-bp(
-        "display",
-        (
-          xs: none,
-          xl: block,
-        )
-      );
-      @include avg-bp-multi(
-        right,
-        44.55px,
-        "xl",
-        "xxl",
-        162.55px,
-        "xxl",
-        "xxxl"
-      );
-    }
+.bg__element-pawn {
+  bottom: 79.58px;
+  z-index: 6;
+  width: 82.61px;
+  height: 122.22px;
+  @include mf-bp(
+    "display",
+    (
+      xs: none,
+      xl: block,
+    )
+  );
+  @include avg-bp-multi(right, 44.55px, "xl", "xxl", 162.55px, "xxl", "xxxl");
+}
 
-    &-city {
-      z-index: 4;
-      @include avg-bp(height, 246.81px, 452.5px);
-      @include avg-bp(width, 885.53px, 1623.5px);
-      @include avg-bp(bottom, 27.33px, 22.5px);
-      // @include avg-bp(right, -109.43px, -141px);
-      @include avg-bp-multi(
-        right,
-        -109.43px,
-        "md",
-        "xl",
-        -141px,
-        "xl",
-        "xxl",
-        0px,
-        "xxl",
-        "xxxl"
-      );
-    }
+.bg__element-city {
+  z-index: 4;
+  @include avg-bp(height, 246.81px, 452.5px);
+  @include avg-bp(width, 885.53px, 1623.5px);
+  @include avg-bp(bottom, 27.33px, 22.5px);
+  @include avg-bp-multi(
+    right,
+    -109.43px,
+    "md",
+    "xl",
+    -141px,
+    "xl",
+    "xxl",
+    0px,
+    "xxl",
+    "xxxl"
+  );
+}
 
-    &-sun {
-      z-index: 2;
-      @include avg-bp(width, 297.47px, 660px);
-      @include avg-bp(height, 297.47px, 660px);
-      @include avg-bp(bottom, 104.69px, 144px);
-      @include avg-bp-multi(
-        right,
-        47.49px,
-        "md",
-        "xl",
-        33px,
-        "xl",
-        "xxl",
-        151px,
-        "xxl",
-        "xxxl"
-      );
-    }
-  }
+.bg__element-sun {
+  z-index: 2;
+  @include avg-bp(width, 297.47px, 660px);
+  @include avg-bp(height, 297.47px, 660px);
+  @include avg-bp(bottom, 104.69px, 144px);
+  @include avg-bp-multi(
+    right,
+    47.49px,
+    "md",
+    "xl",
+    33px,
+    "xl",
+    "xxl",
+    151px,
+    "xxl",
+    "xxxl"
+  );
 }

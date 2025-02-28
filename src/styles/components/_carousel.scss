@@ -2,87 +2,86 @@
 
 .carousel {
   position: relative;
-  // overflow: hidden;
+}
 
-  &__slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity $animation-duration $animation;
-    display: flex;
-    flex-direction: column;
+.carousel__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity $animation-duration $animation;
 
-    &--active {
-      opacity: 1;
-      position: relative;
-    }
-  }
-
-  &__controls {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &__control {
-    user-select: none;
+  &--active {
+    opacity: 1;
     position: relative;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    background-color: $color-btn-arrow-default;
+  }
+}
 
-    &--prev {
-      &::after {
-        content: "b";
-        position: absolute;
-        top: 33%;
-        left: 65%;
-        color: transparent;
-        width: 40%;
-        height: 40%;
-        border-right: 2px solid $color-btn-arrow-text;
-        border-bottom: 2px solid $color-btn-arrow-text;
-        transform: rotate(135deg) translateY(50%) translateX(50%);
-      }
-    }
-    &--next {
-      &::after {
-        content: "b";
-        position: absolute;
-        top: 33%;
-        left: 50%;
-        color: transparent;
-        width: 40%;
-        height: 40%;
-        border-left: 2px solid $color-btn-arrow-text;
-        border-top: 2px solid $color-btn-arrow-text;
-        transform: rotate(135deg) translateY(50%) translateX(50%);
-      }
-    }
+.carousel__controls {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
 
-    &--disabled {
-      background-color: $color-btn-arrow-disabled;
+.carousel__control {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  background-color: $color-btn-arrow-default;
+  border: none;
+  border-radius: 50%;
+  user-select: none;
+
+  &--prev {
+    &::after {
+      content: "b";
+      position: absolute;
+      top: 33%;
+      left: 65%;
+      width: 40%;
+      height: 40%;
+      color: transparent;
+      border-right: 2px solid $color-btn-arrow-text;
+      border-bottom: 2px solid $color-btn-arrow-text;
+      transform: rotate(135deg) translateY(50%) translateX(50%);
+    }
+  }
+  &--next {
+    &::after {
+      content: "b";
+      position: absolute;
+      top: 33%;
+      left: 50%;
+      width: 40%;
+      height: 40%;
+      color: transparent;
+      border-left: 2px solid $color-btn-arrow-text;
+      border-top: 2px solid $color-btn-arrow-text;
+      transform: rotate(135deg) translateY(50%) translateX(50%);
     }
   }
 
-  &__bullets {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  }
-
-  &__bullet {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+  &--disabled {
     background-color: $color-btn-arrow-disabled;
+  }
+}
 
-    &--active {
-      background-color: $color-btn-arrow-default;
-    }
+.carousel__bullets {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.carousel__bullet {
+  width: 10px;
+  height: 10px;
+  background-color: $color-btn-arrow-disabled;
+  border-radius: 50%;
+
+  &--active {
+    background-color: $color-btn-arrow-default;
   }
 }
