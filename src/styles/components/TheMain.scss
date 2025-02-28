@@ -1,22 +1,30 @@
-@use '@styles/global' as *;
-@use '@scss-components/event-promo';
-@use '@scss-components/carousel';
-@use '@scss-components/info-stages';
-@use '@scss-components/participants';
+@use "@styles/global" as *;
+@use "@scss-components/event-promo";
+@use "@scss-components/carousel";
+@use "@scss-components/info-stages";
+@use "@scss-components/participants";
 
 .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    @include mf-bp-rem('gap', (
-        xs: 120px,
-        md: avg(120px, 200px),
-        xl: 200px
-    ));
-    @include mf-bp-rem('padding', (
-        xs: 48px 20px 100px,
-        md: (avg(48px, 80px) avg(20px, 72px) avg(100px, 140px)),
-        xl: 80px 72px 140px
-    ));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @include mf-bp-rem(
+    "gap",
+    (
+      xs: 120px,
+      md: avg(120px, 200px),
+      xl: 200px,
+    )
+  );
+  @include mf-bp-rem(
+    "padding",
+    (
+      xs: 48px 20px 100px,
+      md: (
+        avg(48px, 80px) avg(20px, 72px) avg(100px, 140px),
+      ),
+      xl: 80px 72px 140px,
+    )
+  );
 }

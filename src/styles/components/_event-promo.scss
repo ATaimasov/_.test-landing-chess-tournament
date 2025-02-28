@@ -1,224 +1,251 @@
-@use '@styles/global' as *;
+@use "@styles/global" as *;
 
 .event-promo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 89.6vw;
+    max-width: 1222px;
 
-    &__container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 89.6vw;
-        max-width: 1222px;  
-        
-        @include mf-bp-rem('gap', (
-            xs: 34px,
-            md: avg(34px, 64px),
-            xl: 64px
-        ));
+    @include mf-bp-rem(
+      "gap",
+      (
+        xs: 34px,
+        md: avg(34px, 64px),
+        xl: 64px,
+      )
+    );
+  }
+
+  &__content {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    &:first-child {
+      @include mf-bp-rem(
+        "column-gap",
+        (
+          xs: 24px,
+          md: avg(24px, 64px),
+          xl: 64px,
+        )
+      );
+
+      @include mf-bp-rem(
+        "row-gap",
+        (
+          xs: 24px,
+          md: 0,
+        )
+      );
+
+      @include mf-bp(
+        "grid-template-columns",
+        (
+          xs: 1fr,
+          md: 1fr auto,
+        )
+      );
+
+      @media screen and (min-width: $screen-xs) {
+        grid-template-areas:
+          "text1"
+          "image"
+          "text2";
+      }
+      @media screen and (min-width: $screen-md) {
+        grid-template-areas:
+          "text1 image"
+          "text2 image";
+      }
+
+      & p:first-child {
+        grid-area: text1;
+        @include mf-bp(
+          "display",
+          (
+            md: inline,
+          )
+        );
+
+        & > span {
+          @include mf-bp(
+            "display",
+            (
+              xs: none,
+              xl: inline,
+            )
+          );
+        }
+      }
+
+      & p:nth-child(2) {
+        grid-area: text2;
+        @include mf-bp(
+          "display",
+          (
+            md: inline,
+            xl: none,
+          )
+        );
+      }
+
+      & > img {
+        grid-area: image;
+        @include avg-bp("width", 335px, 394px);
+      }
     }
 
-    &__content {
-        display: grid;
-        align-items: center;
-        justify-items: center;
+    &:nth-child(2) {
+      @include mf-bp-rem(
+        "column-gap",
+        (
+          md: avg(24px, 64px),
+          xl: 44px,
+        )
+      );
 
-        &:first-child {
-            @include mf-bp-rem('column-gap', (
-                xs: 24px,
-                md: avg(24px, 64px),
-                xl: 64px
-            ));
+      @include mf-bp-rem(
+        "row-gap",
+        (
+          xs: 24px,
+          xl: 64px,
+        )
+      );
 
-            @include mf-bp-rem('row-gap', (
-                xs: 24px,
-                md: 0,
-            ));
+      @media screen and (min-width: $screen-xs) {
+        grid-template-areas:
+          "image"
+          "text"
+          "table";
+      }
+      @media screen and (min-width: $screen-lg) {
+        grid-template-areas:
+          "image text"
+          "image table";
+        justify-items: start;
+        grid-template-columns: 45% 55%;
+      }
 
-            @include mf-bp('grid-template-columns', (
-                xs: 1fr,
-                md: 1fr auto
-            ));
+      @media screen and (min-width: $screen-xl) {
+        grid-template-columns: 38.79% 61.21%;
+      }
 
-            @media screen and (min-width: $screen-xs) {
-                grid-template-areas: 
-                "text1"
-                "image"
-                "text2"
-                ;
-            }
-            @media screen and (min-width: $screen-md) {
-                grid-template-areas: 
-                "text1 image"
-                "text2 image"
-                ;
-            }
+      & > img {
+        grid-area: image;
+        max-width: 100%;
+        @include avg-bp("width", 335px, 609px);
+      }
 
+      & p {
+        grid-area: text;
 
-            & p:first-child {
-                grid-area: text1;
-                @include mf-bp('display', (
-                    md: inline,
-                ));
-
-                & > span {
-                    @include mf-bp('display', (
-                        xs: none,
-                        xl: inline,
-                    ));
-                }
-            }
-
-            & p:nth-child(2) {
-                grid-area: text2;
-                @include mf-bp('display', (
-                    md: inline,
-                    xl: none,
-                ));
-            }
-
-            & > img {
-                grid-area: image;
-                @include avg-bp('width', 335px, 394px);
-            }
+        @media screen and (min-width: $screen-md) {
+          text-align: center;
         }
-
-        &:nth-child(2) {
-
-            @include mf-bp-rem('column-gap', (
-                md: avg(24px, 64px),
-                xl: 44px,
-            ));
-
-            @include mf-bp-rem('row-gap', (
-                xs: 24px,
-                xl: 64px,
-
-            ));
-
-            @media screen and (min-width: $screen-xs) {
-                grid-template-areas: 
-                "image"
-                "text"
-                "table"
-                ;
-            }
-            @media screen and (min-width: $screen-lg) {
-                grid-template-areas: 
-                "image text"
-                "image table"
-                ;
-               justify-items: start;
-               grid-template-columns: 45% 55%;
-            }
-
-            @media screen and (min-width: $screen-xl) {
-               grid-template-columns: 38.79% 61.21%;
-            }
-
-            & > img {
-                grid-area: image;
-                max-width: 100%;
-                @include avg-bp('width', 335px, 609px);
-            }
-
-            & p {
-                grid-area: text;
-
-                @media screen and (min-width: $screen-md) {
-                    text-align: center;
-                }
-                @media screen and (min-width: $screen-lg) {
-                    text-align: left;
-                }
-            }
-
-            & table {
-                grid-area: table;
-            }
+        @media screen and (min-width: $screen-lg) {
+          text-align: left;
         }
+      }
+
+      & table {
+        grid-area: table;
+      }
+    }
+  }
+
+  &__text {
+    font-family: "Merriweather", Times, serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.35em;
+    @include mf-bp-rem(
+      "font-size",
+      (
+        xs: 28px,
+        md: avg(28px, 36px),
+        xl: 36px,
+      )
+    );
+
+    &--highlight {
+      color: $color-attention;
+      font-weight: 700;
+    }
+  }
+
+  &__table {
+    font-family: "Golos Text", Times, serif;
+    line-height: 1.2em;
+    color: #313131;
+
+    & tr:not(:last-child) {
+      border-bottom: 2px solid #d0d0d0;
     }
 
-    &__text {
-        font-family: 'Merriweather', Times, serif;
-        font-weight: 400;
-        text-transform: uppercase;
-        line-height: 1.35em;
-        @include mf-bp-rem('font-size', (
-            xs: 28px,
-            md: avg(28px, 36px),
-            xl: 36px
-        ));
-
-        &--highlight {
-            color: $color-attention;
-            font-weight: 700;
-        }
+    s {
+      text-decoration-color: $color-attention;
     }
 
+    tbody tr {
+      td {
+        font-weight: 700;
+        position: relative;
+        @include mf-bp-rem(
+          "padding",
+          (
+            xs: 52px 0 16px,
+            xl: 16px 0 16px 322px,
+          )
+        );
 
-    &__table {
-        font-family: 'Golos Text', Times, serif;
-        line-height: 1.2em;
-        color: #313131;
-
-        & tr:not(:last-child) {
-            border-bottom: 2px solid #D0D0D0;
+        &::after {
+          content: attr(data-label) / attr(data-label);
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-weight: 400;
+          @include mf-bp-rem(
+            "top",
+            (
+              xs: 16px,
+            )
+          );
         }
-
-        s {
-            text-decoration-color: $color-attention;
+        &::before {
+          @media screen and (min-width: $screen-xl) {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 306px;
+            font-weight: 400;
+            height: 100%;
+            width: 2px;
+            background-color: #d0d0d0;
+          }
         }
-
-        tbody tr {
-            td {
-                font-weight: 700;
-                position: relative;
-                @include mf-bp-rem('padding', (
-                    xs: 52px 0 16px,
-                    xl: 16px 0 16px 322px
-                ));
-
-                &::after {
-                    content: attr(data-label) / attr(data-label);
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    font-weight: 400;
-                    @include mf-bp-rem('top', (
-                        xs: 16px,
-                    ));
-                }
-                &::before {
-                    @media screen and (min-width: $screen-xl) {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: 306px;
-                        font-weight: 400;
-                        height: 100%;
-                        width: 2px;
-                        background-color: #D0D0D0;
-                    }
-                }
-
-                
-            }
-        }
-
-        @include mf-bp-rem('font-size', (
-            xs: 20px,
-        ));
-
-        tfoot {
-            td { 
-                padding-top: 20.8px;
-            }
-            color: $color-more;
-            font-size: px-to-rem(18px);
-        }
-
-
+      }
     }
+
+    @include mf-bp-rem(
+      "font-size",
+      (
+        xs: 20px,
+      )
+    );
+
+    tfoot {
+      td {
+        padding-top: 20.8px;
+      }
+      color: $color-more;
+      font-size: px-to-rem(18px);
+    }
+  }
 }

@@ -1,73 +1,88 @@
-@use '@styles/global' as *;
-@use '@scss-components/company-logo';
-@use '@scss-components/hero';
-@use '@scss-components/UI/marquee';
-@use '@scss-components/UI/bg';
-@use '@scss-components/UI/burn-bg';
+@use "@styles/global" as *;
+@use "@scss-components/company-logo";
+@use "@scss-components/hero";
+@use "@scss-components/UI/marquee";
+@use "@scss-components/UI/bg";
+@use "@scss-components/UI/burn-bg";
 
 .header {
-    background-color: $color-background ;
-    position: relative;
+  background-color: $color-background;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 100%;
+    max-width: 1366px;
+    z-index: 10;
+  }
 
- 
+  &__logo {
+    @include mf-bp-rem(
+      "margin",
+      (
+        xs: 18px 20px 0px,
+        md: (
+          avg(18px, 26px) avg(20px, 72px) 0px,
+        ),
+        xl: 26px 72px 0px,
+      )
+    );
+  }
 
-    &-content {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        max-width: 1366px;
-        z-index: 10;
+  &-company__icon {
+    @include mf-bp-rem(
+      "width",
+      (
+        xs: 213px,
+        md: avg(213px, 245.17px),
+        xl: 245.17px,
+      )
+    );
+
+    @include mf-bp-rem(
+      "height",
+      (
+        xs: 32px,
+        md: avg(32px, 36px),
+        xl: 36px,
+      )
+    );
+  }
+
+  &__hero {
+    @include mf-bp-rem(
+      "margin",
+      (
+        xs: 40px 20px 0,
+        md: avg(40px, 62px) avg(20px, 72px) 0,
+        xl: 62px 72px 0,
+      )
+    );
+
+    &-title {
+      @include mf-bp-rem(
+        "font-size",
+        (
+          xs: 36px,
+          md: avg(36px, 60px),
+          xl: 60px,
+        )
+      );
     }
-    
+  }
 
-    &__logo {
-        @include mf-bp-rem('margin', (
-            xs: 18px 20px 0px,
-            md: (avg(18px, 26px) avg(20px, 72px) 0px),
-            xl: 26px 72px 0px
-        ));
-    }
-
-    &-company__icon {
-        @include mf-bp-rem('width', (
-            xs: 213px,
-            md: avg(213px, 245.17px),
-            xl: 245.17px
-        ));
-
-        @include mf-bp-rem('height', (
-            xs: 32px,
-            md: avg(32px, 36px),
-            xl: 36px
-        ));
-      
-    }
-
-    &__hero {
-        @include mf-bp-rem('margin', (
-            xs: 40px 20px 0,
-            md: avg(40px, 62px) avg(20px, 72px) 0,
-            xl: 62px 72px 0,
-        ));
-
-        &-title {
-            @include mf-bp-rem('font-size', (
-                xs: 36px,
-                md: avg(36px, 60px),
-                xl: 60px
-            ));
-        }
-       
-    }
-
-    &__marquee {
-        @include mf-bp('margin-top', (
-            xs: 291px,
-            md: avg(291px, 132px),
-            xl: 132px
-        ));
-    }
+  &__marquee {
+    @include mf-bp(
+      "margin-top",
+      (
+        xs: 291px,
+        md: avg(291px, 132px),
+        xl: 132px,
+      )
+    );
+  }
 }

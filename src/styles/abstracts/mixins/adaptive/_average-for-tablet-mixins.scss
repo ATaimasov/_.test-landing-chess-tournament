@@ -1,9 +1,8 @@
-@use 'shared-breakpoints' as *;
-@use '@abstracts/functions/strip-unit-function' as *;
-@use 'sass:map';
-@use 'sass:list';
-@use 'sass:math';
-
+@use "shared-breakpoints" as *;
+@use "@abstracts/functions/strip-unit-function" as *;
+@use "sass:map";
+@use "sass:list";
+@use "sass:math";
 
 // .example {
 //   // Использование с дефолтными брейкпоинтами (md to xl)
@@ -23,8 +22,14 @@
 // 3. Опционально указывать среднее значение.
 // 4. Выдавать ошибку при использовании несуществующего брейкпоинта.
 
-
-@mixin avg-bp($property, $start-value, $end-value, $start-breakpoint: 'md', $end-breakpoint: 'xl', $middle-value: null) {
+@mixin avg-bp(
+  $property,
+  $start-value,
+  $end-value,
+  $start-breakpoint: "md",
+  $end-breakpoint: "xl",
+  $middle-value: null
+) {
   $start-screen: map.get($breakpoints, $start-breakpoint);
   $end-screen: map.get($breakpoints, $end-breakpoint);
 
@@ -41,20 +46,22 @@
     $middle-value: $start-value + ($end-value - $start-value) * 0.5;
   }
 
-     // Calculations moved outside @media
-     $start-value-num: strip-unit($start-value);
-     $middle-value-num: strip-unit($middle-value);
-     $end-value-num: strip-unit($end-value);
-     $start-screen-num: strip-unit($start-screen);
-     $end-screen-num: strip-unit($end-screen);
- 
-     $calculated-value: calc(#{$middle-value} + (#{$end-value-num} - #{$middle-value-num}) * (min(100vw, #{$end-screen}) - #{$start-screen}) / (#{$end-screen-num} - #{$start-screen-num}));
- 
-      @media screen and (min-width: $start-screen) {
-        #{$property}: $calculated-value; // Using the pre-calculated value
-      }
-     
- 
+  // Calculations moved outside @media
+  $start-value-num: strip-unit($start-value);
+  $middle-value-num: strip-unit($middle-value);
+  $end-value-num: strip-unit($end-value);
+  $start-screen-num: strip-unit($start-screen);
+  $end-screen-num: strip-unit($end-screen);
+
+  $calculated-value: calc(
+    #{$middle-value} + (#{$end-value-num} - #{$middle-value-num}) *
+      (min(100vw, #{$end-screen}) - #{$start-screen}) /
+      (#{$end-screen-num} - #{$start-screen-num})
+  );
+
+  @media screen and (min-width: $start-screen) {
+    #{$property}: $calculated-value; // Using the pre-calculated value
+  }
 
   // Fixed value for end breakpoint and above
   @media screen and (min-width: $end-screen) {
@@ -68,43 +75,54 @@
   $total-pairs: math.floor(math.div(list.length($values), 3));
 
   @for $i from 1 through $total-pairs {
-      $start-index: ($i - 1) * 3 + 1;
-      $value: list.nth($values, $start-index);
-      $next-value: if($i < $total-pairs, list.nth($values, $start-index + 3), $value);
-      $start-breakpoint: list.nth($values, $start-index + 1);
-      // Изменение здесь: если это последняя пара, используем фиктивный брейкпойнт
-      $end-breakpoint: if($i == $total-pairs, 'xxxl', list.nth($values, $start-index + 2));
+    $start-index: ($i - 1) * 3 + 1;
+    $value: list.nth($values, $start-index);
+    $next-value: if(
+      $i < $total-pairs,
+      list.nth($values, $start-index + 3),
+      $value
+    );
+    $start-breakpoint: list.nth($values, $start-index + 1);
+    // Изменение здесь: если это последняя пара, используем фиктивный брейкпойнт
+    $end-breakpoint: if(
+      $i == $total-pairs,
+      "xxxl",
+      list.nth($values, $start-index + 2)
+    );
 
+    $start-screen: map.get($breakpoints, $start-breakpoint);
+    $end-screen: map.get($breakpoints, $end-breakpoint);
 
-      $start-screen: map.get($breakpoints, $start-breakpoint);
-      $end-screen: map.get($breakpoints, $end-breakpoint);
+    @if not $start-screen or not $end-screen {
+      @error "Invalid breakpoint name for pair #{$i}. Please use one of: #{map.keys($breakpoints)}";
+    }
 
-      @if not $start-screen or not $end-screen {
-          @error "Invalid breakpoint name for pair #{$i}. Please use one of: #{map.keys($breakpoints)}";
+    & {
+      @if $i == 1 {
+        #{$property}: $value;
       }
+    }
 
-      & {
-        @if $i == 1 {
-          #{$property}: $value;
-        }
+    $start-value-num: strip-unit($value);
+    $end-value-num: strip-unit($next-value);
+    $start-screen-num: strip-unit($start-screen);
+    $end-screen-num: strip-unit($end-screen);
+
+    $calculated-value: calc(
+      #{$value} +
+        (#{$end-value-num} - #{$start-value-num}) *
+        (min(100vw, #{$end-screen}) - #{$start-screen}) /
+        (#{$end-screen-num} - #{$start-screen-num})
+    );
+
+    @media screen and (min-width: $start-screen) {
+      #{$property}: $calculated-value;
+    }
+
+    @if $i == $total-pairs {
+      @media screen and (min-width: $end-screen) {
+        #{$property}: $next-value;
       }
-      
-
-      $start-value-num: strip-unit($value);
-      $end-value-num: strip-unit($next-value);
-      $start-screen-num: strip-unit($start-screen);
-      $end-screen-num: strip-unit($end-screen);
-
-      $calculated-value: calc(#{$value} + (#{$end-value-num} - #{$start-value-num}) * (min(100vw, #{$end-screen}) - #{$start-screen}) / (#{$end-screen-num} - #{$start-screen-num}));
-
-      @media screen and (min-width: $start-screen) {
-          #{$property}: $calculated-value;
-      }
-
-      @if $i == $total-pairs {
-          @media screen and (min-width: $end-screen) {
-              #{$property}: $next-value;
-          }
-      }
+    }
   }
 }

@@ -4,7 +4,7 @@
 @function avg($value1, $value2) {
   $unit1: math.unit($value1);
   $unit2: math.unit($value2);
-  
+
   @if $unit1 == $unit2 {
     $avg: math.div($value1 + $value2, 2);
     @return $avg;

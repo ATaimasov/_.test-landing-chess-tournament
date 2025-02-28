@@ -2,16 +2,15 @@
 @use "sass:list";
 @use "sass:meta";
 
-@use 'shared-breakpoints' as *;
-@use '@abstracts/functions/is-list-function' as *;
-
-
+@use "shared-breakpoints" as *;
+@use "@abstracts/functions/is-list-function" as *;
 
 @mixin mf-bp($property, $values...) {
   // Check if map of values is passed
-  @if list.length($values) == 1 and meta.type-of(list.nth($values, 1)) == "map" {
+  @if list.length($values) == 1 and meta.type-of(list.nth($values, 1)) == "map"
+  {
     $values-map: list.nth($values, 1);
-    
+
     // Go through all breakpoints in the value map
     @each $breakpoint, $value in $values-map {
       @if not map.has-key($breakpoints, $breakpoint) {
@@ -29,15 +28,15 @@
         }
       }
     }
-  } 
-  
+  }
 }
 
 @mixin mf-bp-rem($property, $values...) {
   // Check if map of values is passed
-  @if list.length($values) == 1 and meta.type-of(list.nth($values, 1)) == "map" {
+  @if list.length($values) == 1 and meta.type-of(list.nth($values, 1)) == "map"
+  {
     $values-map: list.nth($values, 1);
-    
+
     // Go through all breakpoints in the value map
     @each $breakpoint, $value in $values-map {
       @if not map.has-key($breakpoints, $breakpoint) {
@@ -55,7 +54,7 @@
         }
       }
     }
-  } 
+  }
 }
 
 //  concise syntax
@@ -65,7 +64,7 @@
 @function brief-bp($values...) {
   $result: ();
   $breakpoints-list: map.keys($breakpoints);
-  
+
   @for $i from 1 through list.length($values) {
     @if $i <= list.length($breakpoints-list) {
       $breakpoint: list.nth($breakpoints-list, $i);
@@ -73,6 +72,6 @@
       $result: map.set($result, $breakpoint, $value);
     }
   }
-  
+
   @return $result;
 }

@@ -1,242 +1,248 @@
-@use '@styles/global' as *;
+@use "@styles/global" as *;
 
 .info-stages {
+  position: relative;
+
+  @media screen and (max-width: $screen-xl) {
+    width: 89.6vw;
+  }
+
+  &::before {
+    user-select: none;
+    position: absolute;
+    background-image: url("@images/plane.png");
+    background-size: cover;
+    content: "";
+    background-position: center;
+    top: 180px;
+    left: 0;
+    width: 335px;
+    height: 182px;
+    z-index: 2;
+    overflow: hidden;
+
+    @media screen and (min-width: $screen-md) {
+      top: 140px;
+      left: 25%;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      left: 70%;
+    }
+
+    @media screen and (min-width: $screen-xl) {
+      top: 351px;
+      left: 73%;
+      width: 376.44px;
+    }
+  }
+
+  &__title {
     position: relative;
+    max-width: px-to-rem(705px);
+    max-height: px-to-rem(121px);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-family: "Merriweather", Times, serif;
+    line-height: 1.2em;
+    grid-area: text;
+    @include mf-bp-rem(
+      "font-size",
+      (
+        xs: 38px,
+        md: avg(36px, 54px),
+        xl: 54px,
+      )
+    );
+    @include mf-bp-rem(
+      "margin-bottom",
+      (
+        xs: 160px,
+        md: 140px,
+        xl: 0,
+      )
+    );
 
     @media screen and (max-width: $screen-xl) {
-        width: 89.6vw;
+      display: flex;
+      flex-direction: column;
+      gap: px-to-rem(12px);
+    }
+
+    &::after {
+      content: "Будущие источники обогащения васюкинцев";
+      text-transform: none;
+      font-family: "Golos Text", Times, serif;
+      line-height: 1.2em;
+      color: $color-more;
+      @media screen and (min-width: $screen-xl) {
+        position: absolute;
+        bottom: px-to-rem(5px);
+        right: px-to-rem(140px);
+      }
+      @include mf-bp-rem(
+        "font-size",
+        (
+          xs: 18px,
+          md: avg(18px, 20px),
+          xl: 20px,
+        )
+      );
+      @include mf-bp-rem(
+        "padding-left",
+        (
+          xs: 0px,
+          md: 5px,
+          xl: 10px,
+        )
+      );
+      @include mf-bp-rem(
+        "max-width",
+        (
+          xl: 270px,
+        )
+      );
+      @include mf-bp-rem(
+        "max-height",
+        (
+          xs: 44px,
+          md: avg(44px, 49px),
+          xl: 49px,
+        )
+      );
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 1222px;
+  }
+
+  &__list {
+    display: grid;
+    counter-reset: stages 0;
+    gap: 20px;
+    @media screen and (max-width: $screen-xl) {
+      background-color: $color-background;
+    }
+    @media screen and (min-width: $screen-xl) {
+      grid-template-areas:
+        "stage1 stage2 stage3"
+        "stage4 stage5 stage3"
+        "stage6 stage7 stage7";
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__item {
+    font-family: "Golos Text", Times, serif;
+    line-height: 1.2em;
+    font-weight: 500;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    align-items: start;
+    gap: px-to-rem(16px);
+    max-width: px-to-rem(394px);
+    background-color: $color-background;
+
+    @include mf-bp-rem(
+      "padding",
+      (
+        xs: 0px 20px 0 20px,
+        xl: 20px,
+      )
+    );
+    @include mf-bp-rem(
+      "font-size",
+      (
+        xs: 18px,
+        md: avg(18px, 20px),
+        xl: 20px,
+      )
+    );
+
+    @media screen and (min-width: $screen-xl) {
+      max-width: 100%;
+      min-height: 112px;
+
+      @for $i from 1 through 7 {
+        &:nth-child(#{$i}) {
+          grid-area: stage#{$i};
+        }
+      }
+
+      &:last-child {
+        padding-right: px-to-rem(290px);
+      }
+    }
+
+    @media screen and (max-width: $screen-xl) {
+      &::after {
+        display: none;
+      }
     }
 
     &::before {
-        user-select: none;
-        position: absolute;
-        background-image: url('@images/plane.png');
-        background-size: cover;
-        content: '';
-        background-position: center;
-        top: 180px;
-        left: 0;
-        width: 335px;
-        height: 182px;
-        z-index: 2;
-        overflow: hidden;
+      position: relative;
+      top: 0;
+      left: 0;
+      font-size: px-to-rem(20px);
+      font-weight: 600;
+      content: counter(stages);
+      counter-increment: stages;
+      background-color: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 
-        @media screen and (min-width: $screen-md) {
-            top: 140px;
-            left: 25%;
-        }
+  &__controls {
+    @media screen and (min-width: $screen-xl) {
+      display: none;
+    }
+  }
 
-        @media screen and (min-width: $screen-lg) {
-            left: 70%
-        }
-
-        @media screen and (min-width: $screen-xl) {
-            top: 351px;
-            left: 73%;
-            width: 376.44px;
-        }
-        
+  & &__slide {
+    @media screen and (min-width: $screen-xs) {
+      width: 100%;
+      height: 300px;
     }
 
-    &__title {
-        position: relative;
-        max-width: px-to-rem(705px);
-        max-height: px-to-rem(121px);
-        font-weight: 400;
-        text-transform: uppercase;
-        font-family: 'Merriweather', Times, serif;
-        line-height: 1.2em;
-        grid-area: text;
-        @include mf-bp-rem('font-size', (
-            xs: 38px,
-            md: avg(36px, 54px),
-            xl: 54px
-        ));
-        @include mf-bp-rem('margin-bottom', (
-            xs: 160px,
-            md: 140px,
-            xl: 0
-        ));
+    @media screen and (min-width: 600px) {
+      flex-direction: row;
 
-        @media screen and (max-width: $screen-xl) {
-            display: flex;
-            flex-direction: column;
-            gap: px-to-rem(12px);
-        }
+      min-width: 550px;
 
-        &::after {
-            content: 'Будущие источники обогащения васюкинцев';
-            text-transform: none;
-            font-family: 'Golos Text', Times, serif;
-            line-height: 1.2em;
-            color: $color-more;
-            @media screen and (min-width: $screen-xl) {
-                position: absolute;
-                bottom: px-to-rem(5px);
-                right: px-to-rem(140px);
-            }
-            @include mf-bp-rem('font-size', (
-                xs: 18px,
-                md: avg(18px, 20px),
-                xl: 20px
-            ));
-            @include mf-bp-rem('padding-left', (
-                xs: 0px,
-                md: 5px,
-                xl: 10px
-            ));
-            @include mf-bp-rem('max-width', (
-                xl: 270px,
-            ));
-            @include mf-bp-rem('max-height', (
-                xs: 44px,
-                md: avg(44px, 49px),
-                xl: 49px,
-            ));
-            
-        }
-        
+      & > * {
+        padding-top: px-to-rem(62px);
+      }
     }
 
-    &__container {
-        display: flex;
-        flex-direction: column;
-        gap: 28px;
-        max-width: 1222px;
+    &:not(:nth-of-type(3)) {
+      gap: 28px;
     }
 
-    &__list {
-        display: grid;
-        counter-reset: stages 0;
-        gap: 20px;
-        @media screen and (max-width: $screen-xl) {
-            background-color: $color-background ;
-           
-        }
-        @media screen and (min-width: $screen-xl) {
-            grid-template-areas:
-            'stage1 stage2 stage3'
-            'stage4 stage5 stage3'
-            'stage6 stage7 stage7'
-            ;
-
-            &::after {
-                display: none;
-            }
-        }
+    & > * {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      align-items: start;
+      justify-content: center;
     }
 
-   
-
-    &__item {
-        font-family: 'Golos Text', Times, serif;
-        line-height: 1.2em;
-        font-weight: 500;
-
-        position: relative;
-        display: grid;
-        grid-template-columns: 36px 1fr;
-        align-items: start;
-        gap: px-to-rem(16px);
-        max-width: px-to-rem(394px);
-        background-color: $color-background ;
-
-
-        @include mf-bp-rem('padding', (
-            xs: 0px 20px 0 20px,
-            xl: 20px
-        ));
-        @include mf-bp-rem('font-size', (
-            xs: 18px,
-            md: avg(18px, 20px),
-            xl: 20px,
-        ));
-        
-        @media screen and (min-width: $screen-xl) {
-            max-width: 100%;
-            min-height: 112px;
-
-            @for $i from 1 through 7 {
-                &:nth-child(#{$i}) {
-                  grid-area: stage#{$i};
-                }
-            }
-
-            &:last-child {
-                padding-right: px-to-rem(290px);
-            }
-        }
-
-        @media screen and (max-width: $screen-xl) {
-            &::after {
-                display: none;
-            }
-
-            
-        }
-
-        &::before {
-            position: relative;
-            top: 0;
-            left: 0;
-            font-size: px-to-rem(20px);
-            font-weight: 600;
-            content: counter(stages);
-            counter-increment: stages;
-            background-color: white;
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        
-
-
+    & > *:first-child {
+      padding-top: px-to-rem(62px);
     }
-
-    &__controls {
-        @media screen and (min-width: $screen-xl) {
-            display: none;
-        }
-    }
-
-    & &__slide {
-   
-        @media screen and (min-width: $screen-xs) {
-            width: 100%; 
-            height: 300px;
-        }
-
-        @media screen and (min-width: 600px) {
-            flex-direction: row;
-            
-            min-width: 550px;
-
-            & > * {
-                padding-top: px-to-rem(62px);
-            }
-        }
-
-        &:not(:nth-of-type(3)) {
-            gap: 28px;
-        }
-     
-        & > * {
-            width: 100%;
-            height: 100%;
-            display: grid;
-            align-items: start;
-            justify-content: center;
-    
-        }
-
-        & > *:first-child {
-            padding-top: px-to-rem(62px);
-        }
-    }
-
-   
+  }
 }

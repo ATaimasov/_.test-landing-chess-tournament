@@ -1,17 +1,15 @@
 .burn-bg {
-    &::after {
-
-        background-image: url('@images/bg-header.png');
-        background-size: cover;
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        mix-blend-mode: color-burn;
-        filter: brightness(0.95);
-    }
+  &::after {
+    background-image: url("@images/bg-header.png");
+    background-size: cover;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    mix-blend-mode: color-burn;
+    filter: brightness(0.95);
+  }
 }
-
